@@ -1,4 +1,4 @@
-# 209_finalProject
+# W209 Final Project - Life Locator
 
 ## Dataset description
 
