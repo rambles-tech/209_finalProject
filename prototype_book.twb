@@ -23,174 +23,181 @@
           <named-connection caption='uscounties' name='textscan.18kc81a0tqodpx1b9xq9l10boxso'>
             <connection class='textscan' directory='C:/Users/fusio/OneDrive/01. W209/209_finalProject/data_sources' filename='uscounties.csv' password='' server='' />
           </named-connection>
+          <named-connection caption='data_with_distance' name='textscan.0veutkq03qwban13ac5ju037nwa8'>
+            <connection class='textscan' directory='C:/Users/fusio/OneDrive/01. W209/209_finalProject/data_sources' filename='data_with_distance.csv' password='' server='' />
+          </named-connection>
         </named-connections>
-        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.18kc81a0tqodpx1b9xq9l10boxso' name='uscounties.csv' table='[uscounties#csv]' type='table'>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.0veutkq03qwban13ac5ju037nwa8' name='data_with_distance.csv' table='[data_with_distance#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
-            <column datatype='string' name='county' ordinal='0' />
-            <column datatype='string' name='county_ascii' ordinal='1' />
-            <column datatype='string' name='county_fips' ordinal='2' />
-            <column datatype='string' name='state_id' ordinal='3' />
-            <column datatype='string' name='state_name' ordinal='4' />
-            <column datatype='string' name='city_largest' ordinal='5' />
-            <column datatype='integer' name='city_largest_id' ordinal='6' />
-            <column datatype='real' name='lat' ordinal='7' />
-            <column datatype='real' name='lng' ordinal='8' />
-            <column datatype='integer' name='population' ordinal='9' />
-            <column datatype='real' name='density' ordinal='10' />
-            <column datatype='string' name='timezone' ordinal='11' />
-            <column datatype='string' name='timezone_all' ordinal='12' />
-            <column datatype='real' name='age_median' ordinal='13' />
-            <column datatype='real' name='age_under_10' ordinal='14' />
-            <column datatype='real' name='age_10_to_19' ordinal='15' />
-            <column datatype='real' name='age_20s' ordinal='16' />
-            <column datatype='real' name='age_30s' ordinal='17' />
-            <column datatype='real' name='age_40s' ordinal='18' />
-            <column datatype='real' name='age_50s' ordinal='19' />
-            <column datatype='real' name='age_60s' ordinal='20' />
-            <column datatype='real' name='age_70s' ordinal='21' />
-            <column datatype='real' name='age_over_80' ordinal='22' />
-            <column datatype='real' name='male' ordinal='23' />
-            <column datatype='real' name='female' ordinal='24' />
-            <column datatype='real' name='married' ordinal='25' />
-            <column datatype='real' name='divorced' ordinal='26' />
-            <column datatype='real' name='never_married' ordinal='27' />
-            <column datatype='real' name='widowed' ordinal='28' />
-            <column datatype='real' name='family_size' ordinal='29' />
-            <column datatype='real' name='family_dual_income' ordinal='30' />
-            <column datatype='integer' name='income_household_median' ordinal='31' />
-            <column datatype='real' name='income_household_under_5' ordinal='32' />
-            <column datatype='real' name='income_household_5_to_10' ordinal='33' />
-            <column datatype='real' name='income_household_10_to_15' ordinal='34' />
-            <column datatype='real' name='income_household_15_to_20' ordinal='35' />
-            <column datatype='real' name='income_household_20_to_25' ordinal='36' />
-            <column datatype='real' name='income_household_25_to_35' ordinal='37' />
-            <column datatype='real' name='income_household_35_to_50' ordinal='38' />
-            <column datatype='real' name='income_household_50_to_75' ordinal='39' />
-            <column datatype='real' name='income_household_75_to_100' ordinal='40' />
-            <column datatype='real' name='income_household_100_to_150' ordinal='41' />
-            <column datatype='real' name='income_household_150_over' ordinal='42' />
-            <column datatype='real' name='income_household_six_figure' ordinal='43' />
-            <column datatype='integer' name='income_individual_median' ordinal='44' />
-            <column datatype='real' name='home_ownership' ordinal='45' />
-            <column datatype='integer' name='home_value' ordinal='46' />
-            <column datatype='integer' name='rent_median' ordinal='47' />
-            <column datatype='real' name='rent_burden' ordinal='48' />
-            <column datatype='real' name='education_less_highschool' ordinal='49' />
-            <column datatype='real' name='education_highschool' ordinal='50' />
-            <column datatype='real' name='education_some_college' ordinal='51' />
-            <column datatype='real' name='education_bachelors' ordinal='52' />
-            <column datatype='real' name='education_graduate' ordinal='53' />
-            <column datatype='real' name='education_college_or_above' ordinal='54' />
-            <column datatype='real' name='education_stem_degree' ordinal='55' />
-            <column datatype='real' name='labor_force_participation' ordinal='56' />
-            <column datatype='integer' name='labor_force' ordinal='57' />
-            <column datatype='real' name='labor_force_average' ordinal='58' />
-            <column datatype='real' name='unemployment_rate' ordinal='59' />
-            <column datatype='real' name='unemployment_rate_average' ordinal='60' />
-            <column datatype='string' name='bls_date' ordinal='61' />
-            <column datatype='real' name='race_white' ordinal='62' />
-            <column datatype='real' name='race_black' ordinal='63' />
-            <column datatype='real' name='race_asian' ordinal='64' />
-            <column datatype='real' name='race_native' ordinal='65' />
-            <column datatype='real' name='race_pacific' ordinal='66' />
-            <column datatype='real' name='race_other' ordinal='67' />
-            <column datatype='real' name='race_multiple' ordinal='68' />
-            <column datatype='real' name='hispanic' ordinal='69' />
-            <column datatype='real' name='disabled' ordinal='70' />
-            <column datatype='real' name='poverty' ordinal='71' />
-            <column datatype='real' name='limited_english' ordinal='72' />
-            <column datatype='real' name='commute_time' ordinal='73' />
-            <column datatype='real' name='health_uninsured' ordinal='74' />
-            <column datatype='real' name='veteran' ordinal='75' />
-            <column datatype='string' name='zips' ordinal='76' />
+            <column datatype='string' name='county_fips' ordinal='0' />
+            <column datatype='real' name='lat' ordinal='1' />
+            <column datatype='real' name='lng' ordinal='2' />
+            <column datatype='real' name='population' ordinal='3' />
+            <column datatype='real' name='density' ordinal='4' />
+            <column datatype='real' name='age_median' ordinal='5' />
+            <column datatype='real' name='age_under_10' ordinal='6' />
+            <column datatype='real' name='age_10_to_19' ordinal='7' />
+            <column datatype='real' name='age_20s' ordinal='8' />
+            <column datatype='real' name='age_30s' ordinal='9' />
+            <column datatype='real' name='age_40s' ordinal='10' />
+            <column datatype='real' name='age_50s' ordinal='11' />
+            <column datatype='real' name='age_60s' ordinal='12' />
+            <column datatype='real' name='age_70s' ordinal='13' />
+            <column datatype='real' name='age_over_80' ordinal='14' />
+            <column datatype='real' name='male' ordinal='15' />
+            <column datatype='real' name='female' ordinal='16' />
+            <column datatype='real' name='married' ordinal='17' />
+            <column datatype='real' name='divorced' ordinal='18' />
+            <column datatype='real' name='never_married' ordinal='19' />
+            <column datatype='real' name='widowed' ordinal='20' />
+            <column datatype='real' name='family_size' ordinal='21' />
+            <column datatype='real' name='family_dual_income' ordinal='22' />
+            <column datatype='real' name='income_household_median' ordinal='23' />
+            <column datatype='real' name='income_household_under_5' ordinal='24' />
+            <column datatype='real' name='income_household_5_to_10' ordinal='25' />
+            <column datatype='real' name='income_household_10_to_15' ordinal='26' />
+            <column datatype='real' name='income_household_15_to_20' ordinal='27' />
+            <column datatype='real' name='income_household_20_to_25' ordinal='28' />
+            <column datatype='real' name='income_household_25_to_35' ordinal='29' />
+            <column datatype='real' name='income_household_35_to_50' ordinal='30' />
+            <column datatype='real' name='income_household_50_to_75' ordinal='31' />
+            <column datatype='real' name='income_household_75_to_100' ordinal='32' />
+            <column datatype='real' name='income_household_100_to_150' ordinal='33' />
+            <column datatype='real' name='income_household_150_over' ordinal='34' />
+            <column datatype='real' name='income_household_six_figure' ordinal='35' />
+            <column datatype='real' name='income_individual_median' ordinal='36' />
+            <column datatype='real' name='home_ownership' ordinal='37' />
+            <column datatype='real' name='home_value' ordinal='38' />
+            <column datatype='real' name='rent_median' ordinal='39' />
+            <column datatype='real' name='rent_burden' ordinal='40' />
+            <column datatype='real' name='education_less_highschool' ordinal='41' />
+            <column datatype='real' name='education_highschool' ordinal='42' />
+            <column datatype='real' name='education_some_college' ordinal='43' />
+            <column datatype='real' name='education_bachelors' ordinal='44' />
+            <column datatype='real' name='education_graduate' ordinal='45' />
+            <column datatype='real' name='education_college_or_above' ordinal='46' />
+            <column datatype='real' name='education_stem_degree' ordinal='47' />
+            <column datatype='real' name='labor_force_participation' ordinal='48' />
+            <column datatype='real' name='labor_force' ordinal='49' />
+            <column datatype='real' name='labor_force_average' ordinal='50' />
+            <column datatype='real' name='unemployment_rate' ordinal='51' />
+            <column datatype='real' name='unemployment_rate_average' ordinal='52' />
+            <column datatype='real' name='race_white' ordinal='53' />
+            <column datatype='real' name='race_black' ordinal='54' />
+            <column datatype='real' name='race_asian' ordinal='55' />
+            <column datatype='real' name='race_native' ordinal='56' />
+            <column datatype='real' name='race_pacific' ordinal='57' />
+            <column datatype='real' name='race_other' ordinal='58' />
+            <column datatype='real' name='race_multiple' ordinal='59' />
+            <column datatype='real' name='hispanic' ordinal='60' />
+            <column datatype='real' name='disabled' ordinal='61' />
+            <column datatype='real' name='poverty' ordinal='62' />
+            <column datatype='real' name='limited_english' ordinal='63' />
+            <column datatype='real' name='commute_time' ordinal='64' />
+            <column datatype='real' name='health_uninsured' ordinal='65' />
+            <column datatype='real' name='veteran' ordinal='66' />
+            <column datatype='real' name='total_precip_mm' ordinal='67' />
+            <column datatype='real' name='num_precip_days' ordinal='68' />
+            <column datatype='real' name='num_precip_days_greater_1mm' ordinal='69' />
+            <column datatype='real' name='0.05_percentile_high' ordinal='70' />
+            <column datatype='real' name='0.25_percentile_high' ordinal='71' />
+            <column datatype='real' name='0.50_percentile_high' ordinal='72' />
+            <column datatype='real' name='0.75_percentile_high' ordinal='73' />
+            <column datatype='real' name='0.95_percentile_high' ordinal='74' />
+            <column datatype='real' name='min_high' ordinal='75' />
+            <column datatype='real' name='max_high' ordinal='76' />
+            <column datatype='real' name='crime_rate_per_100000_x' ordinal='77' />
+            <column datatype='real' name='mahala' ordinal='78' />
           </columns>
         </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
-        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection='textscan.18kc81a0tqodpx1b9xq9l10boxso' name='uscounties.csv' table='[uscounties#csv]' type='table'>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection='textscan.0veutkq03qwban13ac5ju037nwa8' name='data_with_distance.csv' table='[data_with_distance#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
-            <column datatype='string' name='county' ordinal='0' />
-            <column datatype='string' name='county_ascii' ordinal='1' />
-            <column datatype='string' name='county_fips' ordinal='2' />
-            <column datatype='string' name='state_id' ordinal='3' />
-            <column datatype='string' name='state_name' ordinal='4' />
-            <column datatype='string' name='city_largest' ordinal='5' />
-            <column datatype='integer' name='city_largest_id' ordinal='6' />
-            <column datatype='real' name='lat' ordinal='7' />
-            <column datatype='real' name='lng' ordinal='8' />
-            <column datatype='integer' name='population' ordinal='9' />
-            <column datatype='real' name='density' ordinal='10' />
-            <column datatype='string' name='timezone' ordinal='11' />
-            <column datatype='string' name='timezone_all' ordinal='12' />
-            <column datatype='real' name='age_median' ordinal='13' />
-            <column datatype='real' name='age_under_10' ordinal='14' />
-            <column datatype='real' name='age_10_to_19' ordinal='15' />
-            <column datatype='real' name='age_20s' ordinal='16' />
-            <column datatype='real' name='age_30s' ordinal='17' />
-            <column datatype='real' name='age_40s' ordinal='18' />
-            <column datatype='real' name='age_50s' ordinal='19' />
-            <column datatype='real' name='age_60s' ordinal='20' />
-            <column datatype='real' name='age_70s' ordinal='21' />
-            <column datatype='real' name='age_over_80' ordinal='22' />
-            <column datatype='real' name='male' ordinal='23' />
-            <column datatype='real' name='female' ordinal='24' />
-            <column datatype='real' name='married' ordinal='25' />
-            <column datatype='real' name='divorced' ordinal='26' />
-            <column datatype='real' name='never_married' ordinal='27' />
-            <column datatype='real' name='widowed' ordinal='28' />
-            <column datatype='real' name='family_size' ordinal='29' />
-            <column datatype='real' name='family_dual_income' ordinal='30' />
-            <column datatype='integer' name='income_household_median' ordinal='31' />
-            <column datatype='real' name='income_household_under_5' ordinal='32' />
-            <column datatype='real' name='income_household_5_to_10' ordinal='33' />
-            <column datatype='real' name='income_household_10_to_15' ordinal='34' />
-            <column datatype='real' name='income_household_15_to_20' ordinal='35' />
-            <column datatype='real' name='income_household_20_to_25' ordinal='36' />
-            <column datatype='real' name='income_household_25_to_35' ordinal='37' />
-            <column datatype='real' name='income_household_35_to_50' ordinal='38' />
-            <column datatype='real' name='income_household_50_to_75' ordinal='39' />
-            <column datatype='real' name='income_household_75_to_100' ordinal='40' />
-            <column datatype='real' name='income_household_100_to_150' ordinal='41' />
-            <column datatype='real' name='income_household_150_over' ordinal='42' />
-            <column datatype='real' name='income_household_six_figure' ordinal='43' />
-            <column datatype='integer' name='income_individual_median' ordinal='44' />
-            <column datatype='real' name='home_ownership' ordinal='45' />
-            <column datatype='integer' name='home_value' ordinal='46' />
-            <column datatype='integer' name='rent_median' ordinal='47' />
-            <column datatype='real' name='rent_burden' ordinal='48' />
-            <column datatype='real' name='education_less_highschool' ordinal='49' />
-            <column datatype='real' name='education_highschool' ordinal='50' />
-            <column datatype='real' name='education_some_college' ordinal='51' />
-            <column datatype='real' name='education_bachelors' ordinal='52' />
-            <column datatype='real' name='education_graduate' ordinal='53' />
-            <column datatype='real' name='education_college_or_above' ordinal='54' />
-            <column datatype='real' name='education_stem_degree' ordinal='55' />
-            <column datatype='real' name='labor_force_participation' ordinal='56' />
-            <column datatype='integer' name='labor_force' ordinal='57' />
-            <column datatype='real' name='labor_force_average' ordinal='58' />
-            <column datatype='real' name='unemployment_rate' ordinal='59' />
-            <column datatype='real' name='unemployment_rate_average' ordinal='60' />
-            <column datatype='string' name='bls_date' ordinal='61' />
-            <column datatype='real' name='race_white' ordinal='62' />
-            <column datatype='real' name='race_black' ordinal='63' />
-            <column datatype='real' name='race_asian' ordinal='64' />
-            <column datatype='real' name='race_native' ordinal='65' />
-            <column datatype='real' name='race_pacific' ordinal='66' />
-            <column datatype='real' name='race_other' ordinal='67' />
-            <column datatype='real' name='race_multiple' ordinal='68' />
-            <column datatype='real' name='hispanic' ordinal='69' />
-            <column datatype='real' name='disabled' ordinal='70' />
-            <column datatype='real' name='poverty' ordinal='71' />
-            <column datatype='real' name='limited_english' ordinal='72' />
-            <column datatype='real' name='commute_time' ordinal='73' />
-            <column datatype='real' name='health_uninsured' ordinal='74' />
-            <column datatype='real' name='veteran' ordinal='75' />
-            <column datatype='string' name='zips' ordinal='76' />
+            <column datatype='string' name='county_fips' ordinal='0' />
+            <column datatype='real' name='lat' ordinal='1' />
+            <column datatype='real' name='lng' ordinal='2' />
+            <column datatype='real' name='population' ordinal='3' />
+            <column datatype='real' name='density' ordinal='4' />
+            <column datatype='real' name='age_median' ordinal='5' />
+            <column datatype='real' name='age_under_10' ordinal='6' />
+            <column datatype='real' name='age_10_to_19' ordinal='7' />
+            <column datatype='real' name='age_20s' ordinal='8' />
+            <column datatype='real' name='age_30s' ordinal='9' />
+            <column datatype='real' name='age_40s' ordinal='10' />
+            <column datatype='real' name='age_50s' ordinal='11' />
+            <column datatype='real' name='age_60s' ordinal='12' />
+            <column datatype='real' name='age_70s' ordinal='13' />
+            <column datatype='real' name='age_over_80' ordinal='14' />
+            <column datatype='real' name='male' ordinal='15' />
+            <column datatype='real' name='female' ordinal='16' />
+            <column datatype='real' name='married' ordinal='17' />
+            <column datatype='real' name='divorced' ordinal='18' />
+            <column datatype='real' name='never_married' ordinal='19' />
+            <column datatype='real' name='widowed' ordinal='20' />
+            <column datatype='real' name='family_size' ordinal='21' />
+            <column datatype='real' name='family_dual_income' ordinal='22' />
+            <column datatype='real' name='income_household_median' ordinal='23' />
+            <column datatype='real' name='income_household_under_5' ordinal='24' />
+            <column datatype='real' name='income_household_5_to_10' ordinal='25' />
+            <column datatype='real' name='income_household_10_to_15' ordinal='26' />
+            <column datatype='real' name='income_household_15_to_20' ordinal='27' />
+            <column datatype='real' name='income_household_20_to_25' ordinal='28' />
+            <column datatype='real' name='income_household_25_to_35' ordinal='29' />
+            <column datatype='real' name='income_household_35_to_50' ordinal='30' />
+            <column datatype='real' name='income_household_50_to_75' ordinal='31' />
+            <column datatype='real' name='income_household_75_to_100' ordinal='32' />
+            <column datatype='real' name='income_household_100_to_150' ordinal='33' />
+            <column datatype='real' name='income_household_150_over' ordinal='34' />
+            <column datatype='real' name='income_household_six_figure' ordinal='35' />
+            <column datatype='real' name='income_individual_median' ordinal='36' />
+            <column datatype='real' name='home_ownership' ordinal='37' />
+            <column datatype='real' name='home_value' ordinal='38' />
+            <column datatype='real' name='rent_median' ordinal='39' />
+            <column datatype='real' name='rent_burden' ordinal='40' />
+            <column datatype='real' name='education_less_highschool' ordinal='41' />
+            <column datatype='real' name='education_highschool' ordinal='42' />
+            <column datatype='real' name='education_some_college' ordinal='43' />
+            <column datatype='real' name='education_bachelors' ordinal='44' />
+            <column datatype='real' name='education_graduate' ordinal='45' />
+            <column datatype='real' name='education_college_or_above' ordinal='46' />
+            <column datatype='real' name='education_stem_degree' ordinal='47' />
+            <column datatype='real' name='labor_force_participation' ordinal='48' />
+            <column datatype='real' name='labor_force' ordinal='49' />
+            <column datatype='real' name='labor_force_average' ordinal='50' />
+            <column datatype='real' name='unemployment_rate' ordinal='51' />
+            <column datatype='real' name='unemployment_rate_average' ordinal='52' />
+            <column datatype='real' name='race_white' ordinal='53' />
+            <column datatype='real' name='race_black' ordinal='54' />
+            <column datatype='real' name='race_asian' ordinal='55' />
+            <column datatype='real' name='race_native' ordinal='56' />
+            <column datatype='real' name='race_pacific' ordinal='57' />
+            <column datatype='real' name='race_other' ordinal='58' />
+            <column datatype='real' name='race_multiple' ordinal='59' />
+            <column datatype='real' name='hispanic' ordinal='60' />
+            <column datatype='real' name='disabled' ordinal='61' />
+            <column datatype='real' name='poverty' ordinal='62' />
+            <column datatype='real' name='limited_english' ordinal='63' />
+            <column datatype='real' name='commute_time' ordinal='64' />
+            <column datatype='real' name='health_uninsured' ordinal='65' />
+            <column datatype='real' name='veteran' ordinal='66' />
+            <column datatype='real' name='total_precip_mm' ordinal='67' />
+            <column datatype='real' name='num_precip_days' ordinal='68' />
+            <column datatype='real' name='num_precip_days_greater_1mm' ordinal='69' />
+            <column datatype='real' name='0.05_percentile_high' ordinal='70' />
+            <column datatype='real' name='0.25_percentile_high' ordinal='71' />
+            <column datatype='real' name='0.50_percentile_high' ordinal='72' />
+            <column datatype='real' name='0.75_percentile_high' ordinal='73' />
+            <column datatype='real' name='0.95_percentile_high' ordinal='74' />
+            <column datatype='real' name='min_high' ordinal='75' />
+            <column datatype='real' name='max_high' ordinal='76' />
+            <column datatype='real' name='crime_rate_per_100000_x' ordinal='77' />
+            <column datatype='real' name='mahala' ordinal='78' />
           </columns>
         </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
         <metadata-records>
           <metadata-record class='capability'>
             <remote-name />
             <remote-type>0</remote-type>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias />
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -204,11 +211,11 @@
             </attributes>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>county</remote-name>
+            <remote-name>county_fips</remote-name>
             <remote-type>129</remote-type>
-            <local-name>[county]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
-            <remote-alias>county</remote-alias>
+            <local-name>[county_fips]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>county_fips</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
@@ -218,93 +225,12 @@
             <collation flag='0' name='LEN_RUS' />
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>county_ascii</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[county_ascii]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
-            <remote-alias>county_ascii</remote-alias>
-            <ordinal>1</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>county_fips</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[county_fips]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
-            <remote-alias>county_fips</remote-alias>
-            <ordinal>2</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>state_id</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[state_id]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
-            <remote-alias>state_id</remote-alias>
-            <ordinal>3</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>state_name</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[state_name]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
-            <remote-alias>state_name</remote-alias>
-            <ordinal>4</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>city_largest</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[city_largest]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
-            <remote-alias>city_largest</remote-alias>
-            <ordinal>5</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>city_largest_id</remote-name>
-            <remote-type>20</remote-type>
-            <local-name>[city_largest_id]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
-            <remote-alias>city_largest_id</remote-alias>
-            <ordinal>6</ordinal>
-            <local-type>integer</local-type>
-            <aggregation>Sum</aggregation>
-            <contains-null>true</contains-null>
-          </metadata-record>
-          <metadata-record class='column'>
             <remote-name>lat</remote-name>
             <remote-type>5</remote-type>
             <local-name>[lat]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>lat</remote-alias>
-            <ordinal>7</ordinal>
+            <ordinal>1</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -313,21 +239,21 @@
             <remote-name>lng</remote-name>
             <remote-type>5</remote-type>
             <local-name>[lng]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>lng</remote-alias>
-            <ordinal>8</ordinal>
+            <ordinal>2</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>population</remote-name>
-            <remote-type>20</remote-type>
+            <remote-type>5</remote-type>
             <local-name>[population]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>population</remote-alias>
-            <ordinal>9</ordinal>
-            <local-type>integer</local-type>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
@@ -335,48 +261,20 @@
             <remote-name>density</remote-name>
             <remote-type>5</remote-type>
             <local-name>[density]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>density</remote-alias>
-            <ordinal>10</ordinal>
+            <ordinal>4</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>timezone</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[timezone]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
-            <remote-alias>timezone</remote-alias>
-            <ordinal>11</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-          </metadata-record>
-          <metadata-record class='column'>
-            <remote-name>timezone_all</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[timezone_all]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
-            <remote-alias>timezone_all</remote-alias>
-            <ordinal>12</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-          </metadata-record>
-          <metadata-record class='column'>
             <remote-name>age_median</remote-name>
             <remote-type>5</remote-type>
             <local-name>[age_median]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>age_median</remote-alias>
-            <ordinal>13</ordinal>
+            <ordinal>5</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -385,9 +283,9 @@
             <remote-name>age_under_10</remote-name>
             <remote-type>5</remote-type>
             <local-name>[age_under_10]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>age_under_10</remote-alias>
-            <ordinal>14</ordinal>
+            <ordinal>6</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -396,9 +294,9 @@
             <remote-name>age_10_to_19</remote-name>
             <remote-type>5</remote-type>
             <local-name>[age_10_to_19]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>age_10_to_19</remote-alias>
-            <ordinal>15</ordinal>
+            <ordinal>7</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -407,9 +305,9 @@
             <remote-name>age_20s</remote-name>
             <remote-type>5</remote-type>
             <local-name>[age_20s]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>age_20s</remote-alias>
-            <ordinal>16</ordinal>
+            <ordinal>8</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -418,9 +316,9 @@
             <remote-name>age_30s</remote-name>
             <remote-type>5</remote-type>
             <local-name>[age_30s]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>age_30s</remote-alias>
-            <ordinal>17</ordinal>
+            <ordinal>9</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -429,9 +327,9 @@
             <remote-name>age_40s</remote-name>
             <remote-type>5</remote-type>
             <local-name>[age_40s]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>age_40s</remote-alias>
-            <ordinal>18</ordinal>
+            <ordinal>10</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -440,9 +338,9 @@
             <remote-name>age_50s</remote-name>
             <remote-type>5</remote-type>
             <local-name>[age_50s]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>age_50s</remote-alias>
-            <ordinal>19</ordinal>
+            <ordinal>11</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -451,9 +349,9 @@
             <remote-name>age_60s</remote-name>
             <remote-type>5</remote-type>
             <local-name>[age_60s]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>age_60s</remote-alias>
-            <ordinal>20</ordinal>
+            <ordinal>12</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -462,9 +360,9 @@
             <remote-name>age_70s</remote-name>
             <remote-type>5</remote-type>
             <local-name>[age_70s]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>age_70s</remote-alias>
-            <ordinal>21</ordinal>
+            <ordinal>13</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -473,9 +371,9 @@
             <remote-name>age_over_80</remote-name>
             <remote-type>5</remote-type>
             <local-name>[age_over_80]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>age_over_80</remote-alias>
-            <ordinal>22</ordinal>
+            <ordinal>14</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -484,9 +382,9 @@
             <remote-name>male</remote-name>
             <remote-type>5</remote-type>
             <local-name>[male]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>male</remote-alias>
-            <ordinal>23</ordinal>
+            <ordinal>15</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -495,9 +393,9 @@
             <remote-name>female</remote-name>
             <remote-type>5</remote-type>
             <local-name>[female]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>female</remote-alias>
-            <ordinal>24</ordinal>
+            <ordinal>16</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -506,9 +404,9 @@
             <remote-name>married</remote-name>
             <remote-type>5</remote-type>
             <local-name>[married]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>married</remote-alias>
-            <ordinal>25</ordinal>
+            <ordinal>17</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -517,9 +415,9 @@
             <remote-name>divorced</remote-name>
             <remote-type>5</remote-type>
             <local-name>[divorced]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>divorced</remote-alias>
-            <ordinal>26</ordinal>
+            <ordinal>18</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -528,9 +426,9 @@
             <remote-name>never_married</remote-name>
             <remote-type>5</remote-type>
             <local-name>[never_married]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>never_married</remote-alias>
-            <ordinal>27</ordinal>
+            <ordinal>19</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -539,9 +437,9 @@
             <remote-name>widowed</remote-name>
             <remote-type>5</remote-type>
             <local-name>[widowed]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>widowed</remote-alias>
-            <ordinal>28</ordinal>
+            <ordinal>20</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -550,9 +448,9 @@
             <remote-name>family_size</remote-name>
             <remote-type>5</remote-type>
             <local-name>[family_size]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>family_size</remote-alias>
-            <ordinal>29</ordinal>
+            <ordinal>21</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -561,21 +459,21 @@
             <remote-name>family_dual_income</remote-name>
             <remote-type>5</remote-type>
             <local-name>[family_dual_income]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>family_dual_income</remote-alias>
-            <ordinal>30</ordinal>
+            <ordinal>22</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>income_household_median</remote-name>
-            <remote-type>20</remote-type>
+            <remote-type>5</remote-type>
             <local-name>[income_household_median]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_median</remote-alias>
-            <ordinal>31</ordinal>
-            <local-type>integer</local-type>
+            <ordinal>23</ordinal>
+            <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
@@ -583,9 +481,9 @@
             <remote-name>income_household_under_5</remote-name>
             <remote-type>5</remote-type>
             <local-name>[income_household_under_5]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_under_5</remote-alias>
-            <ordinal>32</ordinal>
+            <ordinal>24</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -594,9 +492,9 @@
             <remote-name>income_household_5_to_10</remote-name>
             <remote-type>5</remote-type>
             <local-name>[income_household_5_to_10]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_5_to_10</remote-alias>
-            <ordinal>33</ordinal>
+            <ordinal>25</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -605,9 +503,9 @@
             <remote-name>income_household_10_to_15</remote-name>
             <remote-type>5</remote-type>
             <local-name>[income_household_10_to_15]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_10_to_15</remote-alias>
-            <ordinal>34</ordinal>
+            <ordinal>26</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -616,9 +514,9 @@
             <remote-name>income_household_15_to_20</remote-name>
             <remote-type>5</remote-type>
             <local-name>[income_household_15_to_20]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_15_to_20</remote-alias>
-            <ordinal>35</ordinal>
+            <ordinal>27</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -627,9 +525,9 @@
             <remote-name>income_household_20_to_25</remote-name>
             <remote-type>5</remote-type>
             <local-name>[income_household_20_to_25]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_20_to_25</remote-alias>
-            <ordinal>36</ordinal>
+            <ordinal>28</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -638,9 +536,9 @@
             <remote-name>income_household_25_to_35</remote-name>
             <remote-type>5</remote-type>
             <local-name>[income_household_25_to_35]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_25_to_35</remote-alias>
-            <ordinal>37</ordinal>
+            <ordinal>29</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -649,9 +547,9 @@
             <remote-name>income_household_35_to_50</remote-name>
             <remote-type>5</remote-type>
             <local-name>[income_household_35_to_50]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_35_to_50</remote-alias>
-            <ordinal>38</ordinal>
+            <ordinal>30</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -660,9 +558,9 @@
             <remote-name>income_household_50_to_75</remote-name>
             <remote-type>5</remote-type>
             <local-name>[income_household_50_to_75]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_50_to_75</remote-alias>
-            <ordinal>39</ordinal>
+            <ordinal>31</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -671,9 +569,9 @@
             <remote-name>income_household_75_to_100</remote-name>
             <remote-type>5</remote-type>
             <local-name>[income_household_75_to_100]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_75_to_100</remote-alias>
-            <ordinal>40</ordinal>
+            <ordinal>32</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -682,9 +580,9 @@
             <remote-name>income_household_100_to_150</remote-name>
             <remote-type>5</remote-type>
             <local-name>[income_household_100_to_150]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_100_to_150</remote-alias>
-            <ordinal>41</ordinal>
+            <ordinal>33</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -693,9 +591,9 @@
             <remote-name>income_household_150_over</remote-name>
             <remote-type>5</remote-type>
             <local-name>[income_household_150_over]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_150_over</remote-alias>
-            <ordinal>42</ordinal>
+            <ordinal>34</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -704,21 +602,21 @@
             <remote-name>income_household_six_figure</remote-name>
             <remote-type>5</remote-type>
             <local-name>[income_household_six_figure]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_household_six_figure</remote-alias>
-            <ordinal>43</ordinal>
+            <ordinal>35</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>income_individual_median</remote-name>
-            <remote-type>20</remote-type>
+            <remote-type>5</remote-type>
             <local-name>[income_individual_median]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>income_individual_median</remote-alias>
-            <ordinal>44</ordinal>
-            <local-type>integer</local-type>
+            <ordinal>36</ordinal>
+            <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
@@ -726,32 +624,32 @@
             <remote-name>home_ownership</remote-name>
             <remote-type>5</remote-type>
             <local-name>[home_ownership]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>home_ownership</remote-alias>
-            <ordinal>45</ordinal>
+            <ordinal>37</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>home_value</remote-name>
-            <remote-type>20</remote-type>
+            <remote-type>5</remote-type>
             <local-name>[home_value]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>home_value</remote-alias>
-            <ordinal>46</ordinal>
-            <local-type>integer</local-type>
+            <ordinal>38</ordinal>
+            <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>rent_median</remote-name>
-            <remote-type>20</remote-type>
+            <remote-type>5</remote-type>
             <local-name>[rent_median]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>rent_median</remote-alias>
-            <ordinal>47</ordinal>
-            <local-type>integer</local-type>
+            <ordinal>39</ordinal>
+            <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
@@ -759,9 +657,9 @@
             <remote-name>rent_burden</remote-name>
             <remote-type>5</remote-type>
             <local-name>[rent_burden]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>rent_burden</remote-alias>
-            <ordinal>48</ordinal>
+            <ordinal>40</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -770,9 +668,9 @@
             <remote-name>education_less_highschool</remote-name>
             <remote-type>5</remote-type>
             <local-name>[education_less_highschool]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>education_less_highschool</remote-alias>
-            <ordinal>49</ordinal>
+            <ordinal>41</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -781,9 +679,9 @@
             <remote-name>education_highschool</remote-name>
             <remote-type>5</remote-type>
             <local-name>[education_highschool]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>education_highschool</remote-alias>
-            <ordinal>50</ordinal>
+            <ordinal>42</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -792,9 +690,9 @@
             <remote-name>education_some_college</remote-name>
             <remote-type>5</remote-type>
             <local-name>[education_some_college]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>education_some_college</remote-alias>
-            <ordinal>51</ordinal>
+            <ordinal>43</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -803,9 +701,9 @@
             <remote-name>education_bachelors</remote-name>
             <remote-type>5</remote-type>
             <local-name>[education_bachelors]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>education_bachelors</remote-alias>
-            <ordinal>52</ordinal>
+            <ordinal>44</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -814,9 +712,9 @@
             <remote-name>education_graduate</remote-name>
             <remote-type>5</remote-type>
             <local-name>[education_graduate]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>education_graduate</remote-alias>
-            <ordinal>53</ordinal>
+            <ordinal>45</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -825,9 +723,9 @@
             <remote-name>education_college_or_above</remote-name>
             <remote-type>5</remote-type>
             <local-name>[education_college_or_above]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>education_college_or_above</remote-alias>
-            <ordinal>54</ordinal>
+            <ordinal>46</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -836,9 +734,9 @@
             <remote-name>education_stem_degree</remote-name>
             <remote-type>5</remote-type>
             <local-name>[education_stem_degree]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>education_stem_degree</remote-alias>
-            <ordinal>55</ordinal>
+            <ordinal>47</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -847,21 +745,21 @@
             <remote-name>labor_force_participation</remote-name>
             <remote-type>5</remote-type>
             <local-name>[labor_force_participation]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>labor_force_participation</remote-alias>
-            <ordinal>56</ordinal>
+            <ordinal>48</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
           <metadata-record class='column'>
             <remote-name>labor_force</remote-name>
-            <remote-type>20</remote-type>
+            <remote-type>5</remote-type>
             <local-name>[labor_force]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>labor_force</remote-alias>
-            <ordinal>57</ordinal>
-            <local-type>integer</local-type>
+            <ordinal>49</ordinal>
+            <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
@@ -869,9 +767,9 @@
             <remote-name>labor_force_average</remote-name>
             <remote-type>5</remote-type>
             <local-name>[labor_force_average]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>labor_force_average</remote-alias>
-            <ordinal>58</ordinal>
+            <ordinal>50</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -880,9 +778,9 @@
             <remote-name>unemployment_rate</remote-name>
             <remote-type>5</remote-type>
             <local-name>[unemployment_rate]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>unemployment_rate</remote-alias>
-            <ordinal>59</ordinal>
+            <ordinal>51</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -891,34 +789,20 @@
             <remote-name>unemployment_rate_average</remote-name>
             <remote-type>5</remote-type>
             <local-name>[unemployment_rate_average]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>unemployment_rate_average</remote-alias>
-            <ordinal>60</ordinal>
+            <ordinal>52</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>bls_date</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[bls_date]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
-            <remote-alias>bls_date</remote-alias>
-            <ordinal>61</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-          </metadata-record>
-          <metadata-record class='column'>
             <remote-name>race_white</remote-name>
             <remote-type>5</remote-type>
             <local-name>[race_white]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>race_white</remote-alias>
-            <ordinal>62</ordinal>
+            <ordinal>53</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -927,9 +811,9 @@
             <remote-name>race_black</remote-name>
             <remote-type>5</remote-type>
             <local-name>[race_black]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>race_black</remote-alias>
-            <ordinal>63</ordinal>
+            <ordinal>54</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -938,9 +822,9 @@
             <remote-name>race_asian</remote-name>
             <remote-type>5</remote-type>
             <local-name>[race_asian]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>race_asian</remote-alias>
-            <ordinal>64</ordinal>
+            <ordinal>55</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -949,9 +833,9 @@
             <remote-name>race_native</remote-name>
             <remote-type>5</remote-type>
             <local-name>[race_native]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>race_native</remote-alias>
-            <ordinal>65</ordinal>
+            <ordinal>56</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -960,9 +844,9 @@
             <remote-name>race_pacific</remote-name>
             <remote-type>5</remote-type>
             <local-name>[race_pacific]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>race_pacific</remote-alias>
-            <ordinal>66</ordinal>
+            <ordinal>57</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -971,9 +855,9 @@
             <remote-name>race_other</remote-name>
             <remote-type>5</remote-type>
             <local-name>[race_other]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>race_other</remote-alias>
-            <ordinal>67</ordinal>
+            <ordinal>58</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -982,9 +866,9 @@
             <remote-name>race_multiple</remote-name>
             <remote-type>5</remote-type>
             <local-name>[race_multiple]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>race_multiple</remote-alias>
-            <ordinal>68</ordinal>
+            <ordinal>59</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -993,9 +877,9 @@
             <remote-name>hispanic</remote-name>
             <remote-type>5</remote-type>
             <local-name>[hispanic]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>hispanic</remote-alias>
-            <ordinal>69</ordinal>
+            <ordinal>60</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1004,9 +888,9 @@
             <remote-name>disabled</remote-name>
             <remote-type>5</remote-type>
             <local-name>[disabled]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>disabled</remote-alias>
-            <ordinal>70</ordinal>
+            <ordinal>61</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1015,9 +899,9 @@
             <remote-name>poverty</remote-name>
             <remote-type>5</remote-type>
             <local-name>[poverty]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>poverty</remote-alias>
-            <ordinal>71</ordinal>
+            <ordinal>62</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1026,9 +910,9 @@
             <remote-name>limited_english</remote-name>
             <remote-type>5</remote-type>
             <local-name>[limited_english]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>limited_english</remote-alias>
-            <ordinal>72</ordinal>
+            <ordinal>63</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1037,9 +921,9 @@
             <remote-name>commute_time</remote-name>
             <remote-type>5</remote-type>
             <local-name>[commute_time]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>commute_time</remote-alias>
-            <ordinal>73</ordinal>
+            <ordinal>64</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1048,9 +932,9 @@
             <remote-name>health_uninsured</remote-name>
             <remote-type>5</remote-type>
             <local-name>[health_uninsured]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>health_uninsured</remote-alias>
-            <ordinal>74</ordinal>
+            <ordinal>65</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -1059,31 +943,154 @@
             <remote-name>veteran</remote-name>
             <remote-type>5</remote-type>
             <local-name>[veteran]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
             <remote-alias>veteran</remote-alias>
+            <ordinal>66</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>total_precip_mm</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[total_precip_mm]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>total_precip_mm</remote-alias>
+            <ordinal>67</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>num_precip_days</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[num_precip_days]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>num_precip_days</remote-alias>
+            <ordinal>68</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>num_precip_days_greater_1mm</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[num_precip_days_greater_1mm]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>num_precip_days_greater_1mm</remote-alias>
+            <ordinal>69</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>0.05_percentile_high</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[0.05_percentile_high]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>0.05_percentile_high</remote-alias>
+            <ordinal>70</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>0.25_percentile_high</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[0.25_percentile_high]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>0.25_percentile_high</remote-alias>
+            <ordinal>71</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>0.50_percentile_high</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[0.50_percentile_high]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>0.50_percentile_high</remote-alias>
+            <ordinal>72</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>0.75_percentile_high</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[0.75_percentile_high]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>0.75_percentile_high</remote-alias>
+            <ordinal>73</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>0.95_percentile_high</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[0.95_percentile_high]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>0.95_percentile_high</remote-alias>
+            <ordinal>74</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>min_high</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[min_high]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>min_high</remote-alias>
             <ordinal>75</ordinal>
             <local-type>real</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>zips</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[zips]</local-name>
-            <parent-name>[uscounties.csv]</parent-name>
-            <remote-alias>zips</remote-alias>
+            <remote-name>max_high</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[max_high]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>max_high</remote-alias>
             <ordinal>76</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>crime_rate_per_100000_x</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[crime_rate_per_100000_x]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>crime_rate_per_100000_x</remote-alias>
+            <ordinal>77</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>mahala</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[mahala]</local-name>
+            <parent-name>[data_with_distance.csv]</parent-name>
+            <remote-alias>mahala</remote-alias>
+            <ordinal>78</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
           </metadata-record>
         </metadata-records>
       </connection>
       <aliases enabled='yes' />
-      <_.fcp.ObjectModelTableType.true...column caption='uscounties.csv' datatype='table' name='[__tableau_internal_object_id__].[uscounties.csv_4FD53CA2A1D34CEB9C52E868D5198698]' role='measure' type='quantitative' />
+      <column caption='0.05 Percentile High' datatype='real' name='[0.05_percentile_high]' role='measure' type='quantitative' />
+      <column caption='0.25 Percentile High' datatype='real' name='[0.25_percentile_high]' role='measure' type='quantitative' />
+      <column caption='0.50 Percentile High' datatype='real' name='[0.50_percentile_high]' role='measure' type='quantitative' />
+      <column caption='0.75 Percentile High' datatype='real' name='[0.75_percentile_high]' role='measure' type='quantitative' />
+      <column caption='0.95 Percentile High' datatype='real' name='[0.95_percentile_high]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='data_with_distance.csv' datatype='table' name='[__tableau_internal_object_id__].[data_with_distance.csv_955C29097F764A629E189606CCF71F23]' role='measure' type='quantitative' />
       <column caption='Age 10 To 19' datatype='real' name='[age_10_to_19]' role='measure' type='quantitative' />
       <column caption='Age 20S' datatype='real' name='[age_20s]' role='measure' type='quantitative' />
       <column caption='Age 30S' datatype='real' name='[age_30s]' role='measure' type='quantitative' />
@@ -1094,13 +1101,10 @@
       <column caption='Age Median' datatype='real' name='[age_median]' role='measure' type='quantitative' />
       <column caption='Age Over 80' datatype='real' name='[age_over_80]' role='measure' type='quantitative' />
       <column caption='Age Under 10' datatype='real' name='[age_under_10]' role='measure' type='quantitative' />
-      <column caption='Bls Date' datatype='string' name='[bls_date]' role='dimension' type='nominal' />
-      <column caption='City Largest' datatype='string' name='[city_largest]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
-      <column caption='City Largest Id' datatype='integer' name='[city_largest_id]' role='dimension' type='ordinal' />
       <column caption='Commute Time' datatype='real' name='[commute_time]' role='measure' type='quantitative' />
       <column caption='County' datatype='string' name='[county]' role='dimension' semantic-role='[County].[Name]' type='nominal' />
-      <column caption='County Ascii' datatype='string' name='[county_ascii]' role='dimension' semantic-role='[County].[Name]' type='nominal' />
       <column caption='County Fips' datatype='string' name='[county_fips]' role='dimension' semantic-role='[County].[Name]' type='nominal' />
+      <column caption='Crime Rate Per 100000 X' datatype='real' name='[crime_rate_per_100000_x]' role='measure' type='quantitative' />
       <column caption='Density' datatype='real' name='[density]' role='measure' type='quantitative' />
       <column caption='Disabled' datatype='real' name='[disabled]' role='measure' type='quantitative' />
       <column caption='Divorced' datatype='real' name='[divorced]' role='measure' type='quantitative' />
@@ -1117,7 +1121,7 @@
       <column caption='Health Uninsured' datatype='real' name='[health_uninsured]' role='measure' type='quantitative' />
       <column caption='Hispanic' datatype='real' name='[hispanic]' role='measure' type='quantitative' />
       <column caption='Home Ownership' datatype='real' name='[home_ownership]' role='measure' type='quantitative' />
-      <column caption='Home Value' datatype='integer' name='[home_value]' role='measure' type='quantitative' />
+      <column caption='Home Value' datatype='real' name='[home_value]' role='measure' type='quantitative' />
       <column caption='Income Household 100 To 150' datatype='real' name='[income_household_100_to_150]' role='measure' type='quantitative' />
       <column caption='Income Household 10 To 15' datatype='real' name='[income_household_10_to_15]' role='measure' type='quantitative' />
       <column caption='Income Household 150 Over' datatype='real' name='[income_household_150_over]' role='measure' type='quantitative' />
@@ -1128,20 +1132,25 @@
       <column caption='Income Household 50 To 75' datatype='real' name='[income_household_50_to_75]' role='measure' type='quantitative' />
       <column caption='Income Household 5 To 10' datatype='real' name='[income_household_5_to_10]' role='measure' type='quantitative' />
       <column caption='Income Household 75 To 100' datatype='real' name='[income_household_75_to_100]' role='measure' type='quantitative' />
-      <column caption='Income Household Median' datatype='integer' name='[income_household_median]' role='measure' type='quantitative' />
+      <column caption='Income Household Median' datatype='real' name='[income_household_median]' role='measure' type='quantitative' />
       <column caption='Income Household Six Figure' datatype='real' name='[income_household_six_figure]' role='measure' type='quantitative' />
       <column caption='Income Household Under 5' datatype='real' name='[income_household_under_5]' role='measure' type='quantitative' />
-      <column caption='Income Individual Median' datatype='integer' name='[income_individual_median]' role='measure' type='quantitative' />
-      <column caption='Labor Force' datatype='integer' name='[labor_force]' role='measure' type='quantitative' />
+      <column caption='Income Individual Median' datatype='real' name='[income_individual_median]' role='measure' type='quantitative' />
+      <column caption='Labor Force' datatype='real' name='[labor_force]' role='measure' type='quantitative' />
       <column caption='Labor Force Average' datatype='real' name='[labor_force_average]' role='measure' type='quantitative' />
       <column caption='Labor Force Participation' datatype='real' name='[labor_force_participation]' role='measure' type='quantitative' />
       <column aggregation='Avg' caption='Lat' datatype='real' name='[lat]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
       <column caption='Limited English' datatype='real' name='[limited_english]' role='measure' type='quantitative' />
       <column caption='Lng' datatype='real' name='[lng]' role='measure' type='quantitative' />
+      <column caption='Mahala' datatype='real' name='[mahala]' role='measure' type='quantitative' />
       <column caption='Male' datatype='real' name='[male]' role='measure' type='quantitative' />
       <column caption='Married' datatype='real' name='[married]' role='measure' type='quantitative' />
+      <column caption='Max High' datatype='real' name='[max_high]' role='measure' type='quantitative' />
+      <column caption='Min High' datatype='real' name='[min_high]' role='measure' type='quantitative' />
       <column caption='Never Married' datatype='real' name='[never_married]' role='measure' type='quantitative' />
-      <column caption='Population' datatype='integer' name='[population]' role='measure' type='quantitative' />
+      <column caption='Num Precip Days' datatype='real' name='[num_precip_days]' role='measure' type='quantitative' />
+      <column caption='Num Precip Days Greater 1Mm' datatype='real' name='[num_precip_days_greater_1mm]' role='measure' type='quantitative' />
+      <column caption='Population' datatype='real' name='[population]' role='measure' type='quantitative' />
       <column caption='Poverty' datatype='real' name='[poverty]' role='measure' type='quantitative' />
       <column caption='Race Asian' datatype='real' name='[race_asian]' role='measure' type='quantitative' />
       <column caption='Race Black' datatype='real' name='[race_black]' role='measure' type='quantitative' />
@@ -1151,103 +1160,101 @@
       <column caption='Race Pacific' datatype='real' name='[race_pacific]' role='measure' type='quantitative' />
       <column caption='Race White' datatype='real' name='[race_white]' role='measure' type='quantitative' />
       <column caption='Rent Burden' datatype='real' name='[rent_burden]' role='measure' type='quantitative' />
-      <column caption='Rent Median' datatype='integer' name='[rent_median]' role='measure' type='quantitative' />
-      <column caption='State Id' datatype='string' name='[state_id]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
-      <column caption='State Name' datatype='string' name='[state_name]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
-      <column caption='Timezone' datatype='string' name='[timezone]' role='dimension' type='nominal' />
-      <column caption='Timezone All' datatype='string' name='[timezone_all]' role='dimension' type='nominal' />
+      <column caption='Rent Median' datatype='real' name='[rent_median]' role='measure' type='quantitative' />
+      <column caption='Total Precip Mm' datatype='real' name='[total_precip_mm]' role='measure' type='quantitative' />
       <column caption='Unemployment Rate' datatype='real' name='[unemployment_rate]' role='measure' type='quantitative' />
       <column caption='Unemployment Rate Average' datatype='real' name='[unemployment_rate_average]' role='measure' type='quantitative' />
       <column caption='Veteran' datatype='real' name='[veteran]' role='measure' type='quantitative' />
       <column caption='Widowed' datatype='real' name='[widowed]' role='measure' type='quantitative' />
-      <column caption='Zips' datatype='string' name='[zips]' role='dimension' type='nominal' />
       <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
       <semantic-values>
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
       <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
         <objects>
-          <object caption='uscounties.csv' id='uscounties.csv_4FD53CA2A1D34CEB9C52E868D5198698'>
+          <object caption='data_with_distance.csv' id='data_with_distance.csv_955C29097F764A629E189606CCF71F23'>
             <properties context=''>
-              <relation connection='textscan.18kc81a0tqodpx1b9xq9l10boxso' name='uscounties.csv' table='[uscounties#csv]' type='table'>
+              <relation connection='textscan.0veutkq03qwban13ac5ju037nwa8' name='data_with_distance.csv' table='[data_with_distance#csv]' type='table'>
                 <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
-                  <column datatype='string' name='county' ordinal='0' />
-                  <column datatype='string' name='county_ascii' ordinal='1' />
-                  <column datatype='string' name='county_fips' ordinal='2' />
-                  <column datatype='string' name='state_id' ordinal='3' />
-                  <column datatype='string' name='state_name' ordinal='4' />
-                  <column datatype='string' name='city_largest' ordinal='5' />
-                  <column datatype='integer' name='city_largest_id' ordinal='6' />
-                  <column datatype='real' name='lat' ordinal='7' />
-                  <column datatype='real' name='lng' ordinal='8' />
-                  <column datatype='integer' name='population' ordinal='9' />
-                  <column datatype='real' name='density' ordinal='10' />
-                  <column datatype='string' name='timezone' ordinal='11' />
-                  <column datatype='string' name='timezone_all' ordinal='12' />
-                  <column datatype='real' name='age_median' ordinal='13' />
-                  <column datatype='real' name='age_under_10' ordinal='14' />
-                  <column datatype='real' name='age_10_to_19' ordinal='15' />
-                  <column datatype='real' name='age_20s' ordinal='16' />
-                  <column datatype='real' name='age_30s' ordinal='17' />
-                  <column datatype='real' name='age_40s' ordinal='18' />
-                  <column datatype='real' name='age_50s' ordinal='19' />
-                  <column datatype='real' name='age_60s' ordinal='20' />
-                  <column datatype='real' name='age_70s' ordinal='21' />
-                  <column datatype='real' name='age_over_80' ordinal='22' />
-                  <column datatype='real' name='male' ordinal='23' />
-                  <column datatype='real' name='female' ordinal='24' />
-                  <column datatype='real' name='married' ordinal='25' />
-                  <column datatype='real' name='divorced' ordinal='26' />
-                  <column datatype='real' name='never_married' ordinal='27' />
-                  <column datatype='real' name='widowed' ordinal='28' />
-                  <column datatype='real' name='family_size' ordinal='29' />
-                  <column datatype='real' name='family_dual_income' ordinal='30' />
-                  <column datatype='integer' name='income_household_median' ordinal='31' />
-                  <column datatype='real' name='income_household_under_5' ordinal='32' />
-                  <column datatype='real' name='income_household_5_to_10' ordinal='33' />
-                  <column datatype='real' name='income_household_10_to_15' ordinal='34' />
-                  <column datatype='real' name='income_household_15_to_20' ordinal='35' />
-                  <column datatype='real' name='income_household_20_to_25' ordinal='36' />
-                  <column datatype='real' name='income_household_25_to_35' ordinal='37' />
-                  <column datatype='real' name='income_household_35_to_50' ordinal='38' />
-                  <column datatype='real' name='income_household_50_to_75' ordinal='39' />
-                  <column datatype='real' name='income_household_75_to_100' ordinal='40' />
-                  <column datatype='real' name='income_household_100_to_150' ordinal='41' />
-                  <column datatype='real' name='income_household_150_over' ordinal='42' />
-                  <column datatype='real' name='income_household_six_figure' ordinal='43' />
-                  <column datatype='integer' name='income_individual_median' ordinal='44' />
-                  <column datatype='real' name='home_ownership' ordinal='45' />
-                  <column datatype='integer' name='home_value' ordinal='46' />
-                  <column datatype='integer' name='rent_median' ordinal='47' />
-                  <column datatype='real' name='rent_burden' ordinal='48' />
-                  <column datatype='real' name='education_less_highschool' ordinal='49' />
-                  <column datatype='real' name='education_highschool' ordinal='50' />
-                  <column datatype='real' name='education_some_college' ordinal='51' />
-                  <column datatype='real' name='education_bachelors' ordinal='52' />
-                  <column datatype='real' name='education_graduate' ordinal='53' />
-                  <column datatype='real' name='education_college_or_above' ordinal='54' />
-                  <column datatype='real' name='education_stem_degree' ordinal='55' />
-                  <column datatype='real' name='labor_force_participation' ordinal='56' />
-                  <column datatype='integer' name='labor_force' ordinal='57' />
-                  <column datatype='real' name='labor_force_average' ordinal='58' />
-                  <column datatype='real' name='unemployment_rate' ordinal='59' />
-                  <column datatype='real' name='unemployment_rate_average' ordinal='60' />
-                  <column datatype='string' name='bls_date' ordinal='61' />
-                  <column datatype='real' name='race_white' ordinal='62' />
-                  <column datatype='real' name='race_black' ordinal='63' />
-                  <column datatype='real' name='race_asian' ordinal='64' />
-                  <column datatype='real' name='race_native' ordinal='65' />
-                  <column datatype='real' name='race_pacific' ordinal='66' />
-                  <column datatype='real' name='race_other' ordinal='67' />
-                  <column datatype='real' name='race_multiple' ordinal='68' />
-                  <column datatype='real' name='hispanic' ordinal='69' />
-                  <column datatype='real' name='disabled' ordinal='70' />
-                  <column datatype='real' name='poverty' ordinal='71' />
-                  <column datatype='real' name='limited_english' ordinal='72' />
-                  <column datatype='real' name='commute_time' ordinal='73' />
-                  <column datatype='real' name='health_uninsured' ordinal='74' />
-                  <column datatype='real' name='veteran' ordinal='75' />
-                  <column datatype='string' name='zips' ordinal='76' />
+                  <column datatype='string' name='county_fips' ordinal='0' />
+                  <column datatype='real' name='lat' ordinal='1' />
+                  <column datatype='real' name='lng' ordinal='2' />
+                  <column datatype='real' name='population' ordinal='3' />
+                  <column datatype='real' name='density' ordinal='4' />
+                  <column datatype='real' name='age_median' ordinal='5' />
+                  <column datatype='real' name='age_under_10' ordinal='6' />
+                  <column datatype='real' name='age_10_to_19' ordinal='7' />
+                  <column datatype='real' name='age_20s' ordinal='8' />
+                  <column datatype='real' name='age_30s' ordinal='9' />
+                  <column datatype='real' name='age_40s' ordinal='10' />
+                  <column datatype='real' name='age_50s' ordinal='11' />
+                  <column datatype='real' name='age_60s' ordinal='12' />
+                  <column datatype='real' name='age_70s' ordinal='13' />
+                  <column datatype='real' name='age_over_80' ordinal='14' />
+                  <column datatype='real' name='male' ordinal='15' />
+                  <column datatype='real' name='female' ordinal='16' />
+                  <column datatype='real' name='married' ordinal='17' />
+                  <column datatype='real' name='divorced' ordinal='18' />
+                  <column datatype='real' name='never_married' ordinal='19' />
+                  <column datatype='real' name='widowed' ordinal='20' />
+                  <column datatype='real' name='family_size' ordinal='21' />
+                  <column datatype='real' name='family_dual_income' ordinal='22' />
+                  <column datatype='real' name='income_household_median' ordinal='23' />
+                  <column datatype='real' name='income_household_under_5' ordinal='24' />
+                  <column datatype='real' name='income_household_5_to_10' ordinal='25' />
+                  <column datatype='real' name='income_household_10_to_15' ordinal='26' />
+                  <column datatype='real' name='income_household_15_to_20' ordinal='27' />
+                  <column datatype='real' name='income_household_20_to_25' ordinal='28' />
+                  <column datatype='real' name='income_household_25_to_35' ordinal='29' />
+                  <column datatype='real' name='income_household_35_to_50' ordinal='30' />
+                  <column datatype='real' name='income_household_50_to_75' ordinal='31' />
+                  <column datatype='real' name='income_household_75_to_100' ordinal='32' />
+                  <column datatype='real' name='income_household_100_to_150' ordinal='33' />
+                  <column datatype='real' name='income_household_150_over' ordinal='34' />
+                  <column datatype='real' name='income_household_six_figure' ordinal='35' />
+                  <column datatype='real' name='income_individual_median' ordinal='36' />
+                  <column datatype='real' name='home_ownership' ordinal='37' />
+                  <column datatype='real' name='home_value' ordinal='38' />
+                  <column datatype='real' name='rent_median' ordinal='39' />
+                  <column datatype='real' name='rent_burden' ordinal='40' />
+                  <column datatype='real' name='education_less_highschool' ordinal='41' />
+                  <column datatype='real' name='education_highschool' ordinal='42' />
+                  <column datatype='real' name='education_some_college' ordinal='43' />
+                  <column datatype='real' name='education_bachelors' ordinal='44' />
+                  <column datatype='real' name='education_graduate' ordinal='45' />
+                  <column datatype='real' name='education_college_or_above' ordinal='46' />
+                  <column datatype='real' name='education_stem_degree' ordinal='47' />
+                  <column datatype='real' name='labor_force_participation' ordinal='48' />
+                  <column datatype='real' name='labor_force' ordinal='49' />
+                  <column datatype='real' name='labor_force_average' ordinal='50' />
+                  <column datatype='real' name='unemployment_rate' ordinal='51' />
+                  <column datatype='real' name='unemployment_rate_average' ordinal='52' />
+                  <column datatype='real' name='race_white' ordinal='53' />
+                  <column datatype='real' name='race_black' ordinal='54' />
+                  <column datatype='real' name='race_asian' ordinal='55' />
+                  <column datatype='real' name='race_native' ordinal='56' />
+                  <column datatype='real' name='race_pacific' ordinal='57' />
+                  <column datatype='real' name='race_other' ordinal='58' />
+                  <column datatype='real' name='race_multiple' ordinal='59' />
+                  <column datatype='real' name='hispanic' ordinal='60' />
+                  <column datatype='real' name='disabled' ordinal='61' />
+                  <column datatype='real' name='poverty' ordinal='62' />
+                  <column datatype='real' name='limited_english' ordinal='63' />
+                  <column datatype='real' name='commute_time' ordinal='64' />
+                  <column datatype='real' name='health_uninsured' ordinal='65' />
+                  <column datatype='real' name='veteran' ordinal='66' />
+                  <column datatype='real' name='total_precip_mm' ordinal='67' />
+                  <column datatype='real' name='num_precip_days' ordinal='68' />
+                  <column datatype='real' name='num_precip_days_greater_1mm' ordinal='69' />
+                  <column datatype='real' name='0.05_percentile_high' ordinal='70' />
+                  <column datatype='real' name='0.25_percentile_high' ordinal='71' />
+                  <column datatype='real' name='0.50_percentile_high' ordinal='72' />
+                  <column datatype='real' name='0.75_percentile_high' ordinal='73' />
+                  <column datatype='real' name='0.95_percentile_high' ordinal='74' />
+                  <column datatype='real' name='min_high' ordinal='75' />
+                  <column datatype='real' name='max_high' ordinal='76' />
+                  <column datatype='real' name='crime_rate_per_100000_x' ordinal='77' />
+                  <column datatype='real' name='mahala' ordinal='78' />
                 </columns>
               </relation>
             </properties>
@@ -1272,13 +1279,13 @@
           <datasource-dependencies datasource='federated.1b4ju7l1aadccr15d7iyr1os3xtd'>
             <column caption='County' datatype='string' name='[county]' role='dimension' semantic-role='[County].[Name]' type='nominal' />
             <column caption='County Fips' datatype='string' name='[county_fips]' role='dimension' semantic-role='[County].[Name]' type='nominal' />
-            <column caption='Home Value' datatype='integer' name='[home_value]' role='measure' type='quantitative' />
-            <column caption='Income Household Median' datatype='integer' name='[income_household_median]' role='measure' type='quantitative' />
+            <column caption='Home Value' datatype='real' name='[home_value]' role='measure' type='quantitative' />
+            <column caption='Income Household Median' datatype='real' name='[income_household_median]' role='measure' type='quantitative' />
             <column-instance column='[home_value]' derivation='Median' name='[med:home_value:qk]' pivot='key' type='quantitative' />
             <column-instance column='[income_household_median]' derivation='Median' name='[med:income_household_median:qk]' pivot='key' type='quantitative' />
             <column-instance column='[county]' derivation='None' name='[none:county:nk]' pivot='key' type='nominal' />
-            <column-instance column='[county_fips]' derivation='None' name='[none:county_fips:nk]' pivot='key' type='nominal' />
-            <column caption='Population' datatype='integer' name='[population]' role='measure' type='quantitative' />
+            <column-instance column='[county_fips]' derivation='None' name='[none:county_fips:ok]' pivot='key' type='nominal' />
+            <column caption='Population' datatype='real' name='[population]' role='measure' type='quantitative' />
             <column-instance column='[population]' derivation='Sum' name='[sum:population:qk]' pivot='key' type='quantitative' />
           </datasource-dependencies>
           <filter class='categorical' column='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[:Measure Names]'>
@@ -1372,7 +1379,7 @@
             <mark class='Multipolygon' />
             <encodings>
               <text column='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[none:county:nk]' />
-              <lod column='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[none:county_fips:nk]' />
+              <lod column='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[none:county_fips:ok]' />
               <color column='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[Multiple Values]' />
               <geometry column='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[Geometry (generated)]' />
             </encodings>
@@ -1389,9 +1396,65 @@
       </table>
       <simple-id uuid='{6961C9FA-D59F-40E0-964B-01CEE5FAC41A}' />
     </worksheet>
+    <worksheet name='Sheet 2'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='uscounties' name='federated.1b4ju7l1aadccr15d7iyr1os3xtd' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.1b4ju7l1aadccr15d7iyr1os3xtd'>
+            <column caption='County Fips' datatype='string' name='[county_fips]' role='dimension' semantic-role='[County].[Name]' type='nominal' />
+            <column caption='Home Value' datatype='real' name='[home_value]' role='measure' type='quantitative' />
+            <column caption='Mahala' datatype='real' name='[mahala]' role='measure' type='quantitative' />
+            <column-instance column='[county_fips]' derivation='None' name='[none:county_fips:ok]' pivot='key' type='nominal' />
+            <column-instance column='[home_value]' derivation='None' name='[none:home_value:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[mahala]' derivation='None' name='[none:mahala:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[Longitude (generated)]' field-type='quantitative' max='-7177918.2854119064' min='-14666631.917159405' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[Latitude (generated)]' field-type='quantitative' max='7770693.2680429919' min='2367904.792474336' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[none:mahala:qk]' num-steps='9' type='interpolated' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Multipolygon' />
+            <encodings>
+              <color column='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[none:mahala:qk]' />
+              <lod column='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[none:county_fips:ok]' />
+              <lod column='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[none:home_value:qk]' />
+              <geometry column='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[Geometry (generated)]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[Latitude (generated)]</rows>
+        <cols>[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[Longitude (generated)]</cols>
+      </table>
+      <simple-id uuid='{E18721AF-725B-4A5A-9A6D-414153600A7B}' />
+    </worksheet>
   </worksheets>
   <windows source-height='30'>
-    <window class='worksheet' maximized='true' name='Prototype'>
+    <window class='worksheet' name='Prototype'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1412,11 +1475,6 @@
             <card type='title' />
           </strip>
         </edge>
-        <edge name='right'>
-          <strip size='160'>
-            <card pane-specification-id='3' param='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[Multiple Values]' type='color' />
-          </strip>
-        </edge>
       </cards>
       <viewpoint>
         <highlight>
@@ -1430,6 +1488,41 @@
         </highlight>
       </viewpoint>
       <simple-id uuid='{3A8C787E-B149-4076-8FA2-0A97699D7275}' />
+    </window>
+    <window class='worksheet' maximized='true' name='Sheet 2'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='2' param='[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[none:mahala:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1b4ju7l1aadccr15d7iyr1os3xtd].[none:mahala:qk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{BF1C2D39-707F-4425-8903-863E0BF4E242}' />
     </window>
   </windows>
   <thumbnails>
@@ -1896,6 +1989,834 @@
       0r29kVTlyMkyqzdWUDSV9ZU7tGv1gYoSk7FylOeqGBkTu9Ol1+4Q+ImNV9/aSZuFe45L6HnU
       t3YoVafpdbr0212sUokwCDBzWcIgIJu3aGzt4LseummiDmJOURAlM7ui0Gt3iIKAxuYmYRjR
       6vZpNBsJL0gCRZb5/0EQJ8AgajQqAAAAAElFTkSuQmCC
+    </thumbnail>
+    <thumbnail height='192' name='Sheet 2' width='192'>
+      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
     </thumbnail>
   </thumbnails>
 </workbook>
