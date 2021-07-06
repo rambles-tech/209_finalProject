@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.8.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"data": {"url": "https://vega.github.io/vega-datasets/data/us-10m.json", "format": {"feature": "counties", "type": "topojson"}}, "mark": {"type": "geoshape", "stroke": "black", "strokeWidth": 0.1}, "encoding": {"color": {"type": "ordinal", "field": "matchPct"}, "tooltip": [{"type": "nominal", "field": "county"}, {"type": "nominal", "field": "state_id"}, {"type": "quantitative", "field": "low_temp"}, {"type": "quantitative", "field": "high_temp"}, {"type": "quantitative", "field": "num_precip_days"}, {"type": "ordinal", "field": "density_group"}, {"type": "quantitative", "field": "income_individual_median"}]}, "height": 500, "projection": {"type": "albersUsa"}, "selection": {"precipitation": {"type": "single", "fields": ["num_days"], "bind": {"input": "range", "max": 365, "min": 0, "step": 1}, "init": {"num_days": 100}}, "income": {"type": "single", "fields": ["individual_median"], "bind": {"input": "range", "max": 100000, "min": 5000, "step": 5000}, "init": {"individual_median": 25000}}, "density": {"type": "single", "fields": ["group"], "bind": {"input": "select", "options": ["0-20", "20-50", "50-100", "100-1000", "1000+"]}, "init": {"group": "100-1000"}}, "temperature": {"type": "single", "fields": ["low_temp", "high_temp"], "bind": {"input": "range", "max": 60, "min": -30, "step": 0.1}, "init": {"low_temp": 10, "high_temp": 90}}}, "transform": [{"lookup": "id", "from": {"data": {"url": "data_sources/final_transformed_data.csv"}, "key": "id", "fields": ["county", "state_id", "low_temp", "high_temp", "num_precip_days", "density_group", "income_individual_median"]}}, {"calculate": "((datum.low_temp >= temperature.low_temp) + (datum.high_temp <= temperature.high_temp) + (datum.num_precip_days <= precipitation.num_days) + (datum.density_group == density.group) + (datum.income_individual_median >= income.individual_median)) / 5", "as": "matchPct"}], "width": 800}, {"data": {"url": "https://vega.github.io/vega-datasets/data/us-10m.json", "format": {"feature": "states", "type": "topojson"}}, "mark": {"type": "geoshape", "fillOpacity": 0, "stroke": "black"}, "height": 600, "projection": {"type": "albersUsa"}, "width": 1000}], "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json"};
+      var embedOpt = {"renderer": "svg", "mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
