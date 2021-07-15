@@ -66,7 +66,7 @@ def build_chart(data_url, fields_conf, selectors, width=800, height=500):
 
 def country_view(data_url, vars_list=None):
 	conf = get_conf(vars_list)
-	return alt.layer(build_chart(conf, fields_to_selectors, WIDTH, HEIGHT), outline).to_json()
+	return alt.layer(build_chart(data_url, conf, fields_to_selectors, WIDTH, HEIGHT), outline).to_dict()
 
 def state_view(data_url, vars_list=None):
 	conf = get_conf(vars_list)
@@ -107,4 +107,4 @@ def state_view(data_url, vars_list=None):
 	state_view = (state_specific & (bars[0] | bars[1])).resolve_scale(
 	    color='independent'
 	)
-	return state_view.to_json()
+	return state_view.to_dict()

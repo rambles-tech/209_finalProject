@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for
+import json
 import os
 import altair_visualization as alt_vis
  
@@ -12,7 +13,7 @@ def home():
 def about():
   return render_template('about.html')
 
-@app.route('/country')
+@app.route('/country/')
 def country():
   return country_spec(None)
 
@@ -24,21 +25,16 @@ def country_spec(vars_list):
   return render_template('country.html', vega_spec=vega_spec) 
 
 
-@app.route('/state')
+@app.route('/state/')
 def state():
-  return state_configured(None)
-
-@app.route('/state/<vars_list>')
-def state_configured(vars_list):
-  data_url = "/~skylerroh/w209/static/data_sources/final_transformed_data.csv"
-  var_names = vars_conf.split('&') if vars_list else None
-  vega_spec = alt_vis.state_view(var_names)
-  return render_template('state.html', vega_spec=f'/state/spec/{vars_list}') 
+  return state_spec(None)
 
 @app.route('/state/spec/<vars_list>')
 def state_spec(vars_list):
+  data_url = "/~skylerroh/w209/static/data_sources/final_transformed_data.csv"
   var_names = vars_list.split('&') if vars_list else None
-  return alt_vis.state_view(var_names)
- 
+  vega_spec = alt_vis.state_view(data_url, var_names)
+  return render_template('state.html', vega_spec=vega_spec) 
+
 if __name__ == '__main__':
   app.run(debug=False)
