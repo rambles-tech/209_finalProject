@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+	<h1>Compare Details within Each State</h1>
+	<div id=state></div> 
+	<script type="text/javascript">
+		// var vis_div = document.getElementById('#state');
+		vegaEmbed('#state', JSON.parse('{{ vega_spec | tojson | safe}}'));
+	</script>
+{% endblock %}
