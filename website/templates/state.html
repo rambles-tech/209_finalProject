@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block content %}
+	<h1>Compare Details within Each State</h1>
+	<div id=#state></div> 
+	<script type="text/javascript">
+			vegaEmbed('#state', "{{ vega_spec }}");
+	</script>
+{% endblock %}s

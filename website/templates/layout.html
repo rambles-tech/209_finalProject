@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://d3js.org.d3.v6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <h1>W209 Final Project: Chris Donotan, Dhyani Parekh, Skyler Roh</h1>
+    <h2>Life Locator</h2>
+    <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong>	   
+  </head>
+  <body>   
+  <header>
+   <div class="container">
+     <h1 class="logo">W209: Life Locator</h1>
+       <strong><nav>
+          <ul class="menu">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('country') }}">Country</a></li>
+            <li><a href="{{ url_for('state') }}">State</a></li>
+          </ul>
+        </nav></strong>
+   </div>
+ </header> 
+     
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+     
+  </body>
+</html>
