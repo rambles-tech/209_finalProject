@@ -46,9 +46,6 @@ def build_chart(data_url, fields_conf, selectors, width=800, height=500):
         from_=alt.LookupData(data_url, 'id', ['county', 'state_id'] + list(fields_conf.keys()))
     ).project(
         type='albersUsa'
-    ).encode(
-        color="matchPct:O",
-        tooltip=["county:N", "state_id:N"] + [f"{f}:{conf.get(FIELD_TYPE)}" for f, conf in fields_conf.items()],
     )
     
     selectors = set([selectors.get(f).get(SELECTOR) for f in fields_conf.keys()])
@@ -57,6 +54,9 @@ def build_chart(data_url, fields_conf, selectors, width=800, height=500):
     
     base_chart = base_chart.transform_calculate(
         matchPct = create_match_pct(fields_conf, fields_to_selectors)
+    ).encode(
+        color=alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1])),
+        tooltip=["county:N", "state_id:N"] + [f"{f}:{conf.get(FIELD_TYPE)}" for f, conf in fields_conf.items()],
     ).properties(
         width=width,
         height=height
@@ -64,14 +64,46 @@ def build_chart(data_url, fields_conf, selectors, width=800, height=500):
 
     return base_chart
 
-def country_view(data_url, vars_list=None):
-	conf = get_conf(vars_list)
-	return alt.layer(build_chart(data_url, conf, fields_to_selectors, WIDTH, HEIGHT), outline).to_dict()
+# fields: dict from field_name to new init value
+def override_inits(chart, fields):
+	chart_dict = chart.to_dict() if not isinstance(chart, dict) else chart
+	for f, init_val in fields.items():
+		if 'selection' in chart_dict:
+			inits = chart_dict['selection'] \
+				.get(fields_to_selectors[f][SELECTOR].name) \
+				.get("init")
+			inits.update({fields_to_selectors[f][SELECTOR_FIELD]: init_val})
+	del chart_dict["$schema"]
+	del chart_dict["config"]
+	return alt.Chart.from_dict(chart_dict) if not isinstance(chart, dict) else chart
 
-def state_view(data_url, vars_list=None):
-	conf = get_conf(vars_list)
-	base = alt.layer(build_chart(data_url, conf, fields_to_selectors, WIDTH, HEIGHT), outline)
+def get_overrides(reference_county, reference_state, vars_list):
+	df = county[(county.county == reference_county) & (county.state_id == reference_state)].iloc[0].to_dict()
+	return {f: df[f] for f in vars_list.keys()}
 
+def country_base(data_url, vars_list=None, reference_county=None, reference_state=None):
+	conf = get_conf(vars_list)
+	do_override = reference_county and reference_state
+	county_value_overrides = get_overrides(reference_county, reference_state, conf) if do_override else {}
+	base = build_chart(data_url, conf, fields_to_selectors, WIDTH, HEIGHT)
+	if do_override:
+		base = base.encode(
+        color=alt.condition(f'datum.county == "{reference_county}" && datum.state_id == "{reference_state}"',
+        					alt.value("Grey"),
+        					alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1]))))
+		base = override_inits(base, county_value_overrides)
+	return base
+
+def country_view(data_url, vars_list=None, reference_county=None, reference_state=None):
+	base = country_base(data_url, conf, reference_county, reference_state)
+	
+	return country_view.to_dict()
+
+def state_view(data_url, vars_list=None, reference_county=None, reference_state=None):
+	conf = get_conf(vars_list)
+	base = country_base(data_url, conf, reference_county, reference_state)
+
+	print(type(base))
 	state_specific = alt.layer(
 		base.add_selection(state_selector).transform_filter(state_selector), 
 	    outline.transform_filter(
@@ -99,12 +131,12 @@ def state_view(data_url, vars_list=None):
 	        width=WIDTH / 2,
 	        height=HEIGHT / 2
     	)
-
-	                  
+        
 	    bars[i%2] &= field_bars
 
 
 	state_view = (state_specific & (bars[0] | bars[1])).resolve_scale(
 	    color='independent'
 	)
+
 	return state_view.to_dict()
