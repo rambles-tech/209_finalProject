@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% user selection %}
+  <h1>Select the data that matters to you: </h1>
+  <p></p>
+
+  <!-- create the checkboxes-->
+  Population Density: <input type="checkbox" id="density">
+  Median Age: <input type="checkbox" id="age_median">
+  Median Individual Income: <input type="checkbox" id="income_individual_median">
+  Home Value: <input type="checkbox" id="home_value">
+  Median Rent: <input type="checkbox" id="rent_median">
+  Unemployment Rate: <input type="checkbox" id="unemployment_rate">
+  Precipitous Days: <input type="checkbox" id="num_precip_days">
+  Minimum High Temp: <input type="checkbox" id="min_high">
+  Maximum High Temp: <input type="checkbox" id="max_high">
+  Crime Rate per 100,000: <input type="checkbox" id="crime_rate_per_100000">
+
+
+  <!-- Button to reset view-->
+  <button onclick="myFunction()">Generate View</button>
+
+
+
+  <script type="text/javascript">
+  // script will parse the URL, extract the everything after the final '/'
+  // then seperate any parameters with '&'
+  const paramArr = window.location.href.split("/").slice(-1)[0].split("&")
+
+  //Test code
+  //alert(paramArr)
+  //const paramArr = ["min_high", "max_high"]
+  //document.getElementById("density").checked="true";
+
+  //iterate through paramArr
+  //set checked=true for respective parameters (checkboxes with corresponding variables)
+  paramArr.forEach(element => document.getElementById(element).checked="true");
+  </script>
+
+  <script>
+    function myFunction() {
+      // insert call to appropriate page here
+
+      //following code checks all checkboxes for state
+      //creates array with id names of all checked boxes
+      var array = []
+      var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+
+      for (var i = 0; i < checkboxes.length; i++) {
+        array.push(checkboxes[i].id)
+      }
+
+      //test code
+      //alert(array)
+    }
+  </script>
+
+{% endblock %}
+
+
+<!--
+'density',
+'age_median',
+'income_individual_median',
+'home_value',
+'rent_median',
+'unemployment_rate',
+'num_precip_days',
+'min_high',
+'max_high',
+'crime_rate_per_100000
+-->
