@@ -1,17 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 	<h1>Motivation</h1>
-	<p></p> 
+	<p>The goal of this project is to provide prospective movers with a tool to compare counties across the United States based on criteria of interest.</p>
 
-	<h1>Explore New Regions of the US</h1>
-	<div id=country></div> 
-	<script type="text/javascript">
-			vegaEmbed('#country', "chart_assets/country_view.json");
-	</script>
-
-	<h1>Compare Details within Each State</h1>
-	<div id=state></div> 
-	<script type="text/javascript">
-			vegaEmbed('#state', "{{ url_for('static', filename='chart_assets/state_view.json') }}");
-	</script>
+	{% include "userSelection.html" %}
 {% endblock %}

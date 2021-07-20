@@ -1,29 +1,25 @@
-{% extends "layout.html" %}
-{% user selection %}
-  <h1>Select the data that matters to you: </h1>
+ <h1>Select the data that matters to you:<br></h1>
   <p></p>
 
   <!-- create the checkboxes-->
-  Population Density: <input type="checkbox" id="density">
-  Median Age: <input type="checkbox" id="age_median">
-  Median Individual Income: <input type="checkbox" id="income_individual_median">
-  Home Value: <input type="checkbox" id="home_value">
-  Median Rent: <input type="checkbox" id="rent_median">
-  Unemployment Rate: <input type="checkbox" id="unemployment_rate">
-  Precipitous Days: <input type="checkbox" id="num_precip_days">
-  Minimum High Temp: <input type="checkbox" id="min_high">
-  Maximum High Temp: <input type="checkbox" id="max_high">
-  Crime Rate per 100,000: <input type="checkbox" id="crime_rate_per_100000">
+  Population Density: <input type="checkbox" id="density"><br>
+  Median Age: <input type="checkbox" id="age_median"><br>
+  Median Individual Income: <input type="checkbox" id="income_individual_median"><br>
+  Home Value: <input type="checkbox" id="home_value"><br>
+  Median Rent: <input type="checkbox" id="rent_median"><br>
+  Unemployment Rate: <input type="checkbox" id="unemployment_rate"><br>
+  Precipitous Days: <input type="checkbox" id="num_precip_days"><br>
+  Minimum High Temp: <input type="checkbox" id="min_high"><br>
+  Maximum High Temp: <input type="checkbox" id="max_high"><br>
+  Crime Rate per 100,000: <input type="checkbox" id="crime_rate_per_100000"><br>
 
 
   <!-- Button to reset view-->
   <button onclick="myFunction()">Generate View</button>
 
-
-
-  <script type="text/javascript">
+  <script type="text/javascript" defer>
   // script will parse the URL, extract the everything after the final '/'
-  // then seperate any parameters with '&'
+  // then separate any parameters with '&'
   const paramArr = window.location.href.split("/").slice(-1)[0].split("&")
 
   //Test code
@@ -33,7 +29,8 @@
 
   //iterate through paramArr
   //set checked=true for respective parameters (checkboxes with corresponding variables)
-  paramArr.forEach(element => document.getElementById(element).checked="true");
+  const checks = document.querySelectorAll('input[type=checkbox]')
+  if (paramArr !== null) { checks.forEach(check => check.checked=(check.id in paramArr)) };
   </script>
 
   <script>
@@ -53,8 +50,6 @@
       //alert(array)
     }
   </script>
-
-{% endblock %}
 
 
 <!--
