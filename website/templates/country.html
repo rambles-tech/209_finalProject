@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
+	{% include "userSelection.html" %}
+
 	<h1>Explore New Regions of the US</h1>
-	<div id=country></div> 
+	<div id=country></div>
 	<script type="text/javascript">
 		// var vis_div = document.getElementById('#country');
 		vegaEmbed('#country', JSON.parse('{{ vega_spec | tojson | safe}}'));
