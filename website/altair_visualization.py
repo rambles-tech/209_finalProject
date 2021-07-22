@@ -25,7 +25,7 @@ state_dropdown = alt.binding_select(options=sorted(county.state_id.dropna().uniq
 state_selector = alt.selection_single(name="state", fields=['state_id'], bind=state_dropdown, init={"state_id": "CA"})
 
 # get the standard deviations
-stddevs = county.std(axis=1).to_dict()
+stddevs = county.std().to_dict()
 
 def create_match_pct(fields_conf, selectors):
     n_fields = len(fields_conf)
