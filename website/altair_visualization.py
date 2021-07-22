@@ -24,6 +24,9 @@ county = pd.read_csv(dataFilePath)
 state_dropdown = alt.binding_select(options=sorted(county.state_id.dropna().unique().tolist()))
 state_selector = alt.selection_single(name="state", fields=['state_id'], bind=state_dropdown, init={"state_id": "CA"})
 
+# get the standard deviations
+stddevs = county.std(axis=1).to_dict()
+
 def create_match_pct(fields_conf, selectors):
     n_fields = len(fields_conf)
     formula = []
@@ -34,6 +37,28 @@ def create_match_pct(fields_conf, selectors):
                                                               selector=selector))
     added = "(" + " + ".join(formula) + ")"
     return added + f" / {n_fields}"
+
+def create_similarity(fields_conf, selectors):
+    dist = "l1" # l2
+    n_fields = len(fields_conf)
+    formula = []
+    for f, conf in fields_conf.items():
+        selector = f"{selectors.get(f).get(SELECTOR).name}.{selectors.get(f).get(SELECTOR_FIELD)}"
+        comp = comparators.get(conf.get(COMPARATOR))
+        if comp == "==":
+            formula.append(f"(datum.{f} {comp} {selector})")
+        else:
+            formula.append(f"(abs(datum.{f} - {selector})/{stddevs.get(f)})")
+
+    if dist == "l1":
+        # average l1
+        added = "(" + " + ".join(formula) + ")"
+        return added + f" / {n_fields}"
+
+    elif dist == "l2":
+        #l2
+        added = "(sqrt(" + " + ".join(["pow(f, 2)" for f in formula]) + "))"
+        return added
 
 def build_chart(data_url, fields_conf, selectors, width=800, height=500):
     base_chart = alt.Chart(
@@ -53,7 +78,7 @@ def build_chart(data_url, fields_conf, selectors, width=800, height=500):
         base_chart = base_chart.add_selection(s)
     
     base_chart = base_chart.transform_calculate(
-        matchPct = create_match_pct(fields_conf, fields_to_selectors)
+        matchPct=create_similarity(fields_conf, fields_to_selectors)
     ).encode(
         color=alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1])),
         tooltip=["county:N", "state_id:N"] + [f"{f}:{conf.get(FIELD_TYPE)}" for f, conf in fields_conf.items()],
