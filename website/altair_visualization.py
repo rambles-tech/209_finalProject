@@ -54,8 +54,8 @@ def create_similarity(fields_conf, selectors):
 
     if DIST_METHOD == "l1":
         # average l1
-        added = "(1-(" + " + ".join(formula) + "))"
-        return added + f" / {n_fields}"
+        added = "(" + " + ".join(formula) + ")"
+        return f"(1-({added} / {n_fields}))"
 
     elif DIST_METHOD == "l2":
         #l2
