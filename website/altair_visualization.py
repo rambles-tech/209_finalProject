@@ -47,19 +47,19 @@ def create_similarity(fields_conf, selectors):
         selector = f"{selectors.get(f).get(SELECTOR).name}.{selectors.get(f).get(SELECTOR_FIELD)}"
         comp = comparators.get(conf.get(COMPARATOR))
         if comp == "==":
-            formula.append(f"(datum.{f} {comp} {selector})")
+            formula.append(f"(1 - (datum.{f} {comp} {selector}))")
         else:
             sd = stddevs.get(f)
             formula.append(f"(abs(datum.{f} - {selector})/{sd})")
 
     if DIST_METHOD == "l1":
         # average l1
-        added = "(" + " + ".join(formula) + ")"
+        added = "(1-(" + " + ".join(formula) + "))"
         return added + f" / {n_fields}"
 
     elif DIST_METHOD == "l2":
         #l2
-        added = "(sqrt(" + " + ".join(["pow(f, 2)" for f in formula]) + "))"
+        added = "(1-(sqrt(" + " + ".join(["pow(f, 2)" for f in formula]) + ")))"
         return added
 
 def build_chart(data_url, fields_conf, selectors, width=800, height=500):

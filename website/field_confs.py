@@ -52,7 +52,7 @@ fields_to_selectors = {
     "precip_num_days": {SELECTOR: precip_selector, SELECTOR_FIELD: "num_days"},
     "density_group": {SELECTOR: density_selector, SELECTOR_FIELD: "group"},
     "income_individual_median": {SELECTOR: income_selector, SELECTOR_FIELD: "individual_median"},
-    "age_median_group": {SELECTOR: age_selector, SELECTOR_FIELD: "median"},
+    "age_median_group": {SELECTOR: age_selector, SELECTOR_FIELD: "group"},
     "home_value": {SELECTOR: home_value_selector, SELECTOR_FIELD: "value"},
     "rent_median": {SELECTOR: rent_median_selector, SELECTOR_FIELD: "median"},
     "unemployment_rate_average": {SELECTOR: unemployment_rate_selector, SELECTOR_FIELD: "rate"},

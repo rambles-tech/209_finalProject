@@ -72,6 +72,17 @@
         })
       });
     }
+
+    function persistReferenceCounty() {
+      if (window.location.search) {
+        var search = window.location.search.substring(1);
+        var queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
+        console.log(queryParams);
+        document.getElementById("stateSelect").value = queryParams["reference_state"];
+        changeCounties(queryParams["reference_state"]);
+        document.getElementById("countySelect").value = queryParams["reference_county"];
+      }
+    }
   </script>
 
   <script type="text/javascript" defer>
@@ -95,6 +106,12 @@
         selector.appendChild(opt);
     }
   });
+
+  var search = window.location.search.substring(1);
+  var queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
+  console.log(queryParams);
+  document.getElementById("stateSelect").val = queryParams["reference_state"];
+  persistReferenceCounty();
 
 <!--  console.log(JSON.parse('{{ Kwargs | tojson | safe}}'))-->
 <!--  console.log(JSON.parse('{{ vars_list | tojson | safe}}'))-->
