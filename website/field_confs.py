@@ -25,7 +25,7 @@ education_selector = create_slider("education", 0, 100, 1, [("college_or_above",
 income_selector = create_slider("income", 5000, 100000, 5000, [("individual_median", 25000)])
 density_selector = create_dropdown("density", density_labels, [("group", "100-1000")])
 
-age_selector = create_dropdown("age_median", age_labels, [("group", "25-50")])
+age_selector = create_dropdown("age_median", age_labels, [("group", "36-45")])
 home_value_selector = create_slider("home", 0, 2000000, 50000, [("value", 500000)])
 rent_median_selector = create_slider("rent", 0, 3000, 100, [("median", 1000)])
 unemployment_rate_selector = create_slider("unemployment", 0, 100, 5, [("rate", 5)])
