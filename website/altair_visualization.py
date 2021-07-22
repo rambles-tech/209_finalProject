@@ -5,6 +5,8 @@ from field_confs import *
 
 from vega_datasets import data
 
+DIST_METHOD = "l1"  # [l1, l2, binary]
+
 WIDTH = 800
 HEIGHT = 500
 dataFilePath = os.path.dirname(os.path.abspath(__file__)) + "/static/data_sources/final_transformed_data.csv"
@@ -39,7 +41,6 @@ def create_match_pct(fields_conf, selectors):
     return added + f" / {n_fields}"
 
 def create_similarity(fields_conf, selectors):
-    dist = "l1" # l2
     n_fields = len(fields_conf)
     formula = []
     for f, conf in fields_conf.items():
@@ -48,14 +49,15 @@ def create_similarity(fields_conf, selectors):
         if comp == "==":
             formula.append(f"(datum.{f} {comp} {selector})")
         else:
-            formula.append(f"(abs(datum.{f} - {selector})/{stddevs.get(f)})")
+            sd = stddevs.get(f)
+            formula.append(f"(abs(datum.{f} - {selector})/{sd})")
 
-    if dist == "l1":
+    if DIST_METHOD == "l1":
         # average l1
         added = "(" + " + ".join(formula) + ")"
         return added + f" / {n_fields}"
 
-    elif dist == "l2":
+    elif DIST_METHOD == "l2":
         #l2
         added = "(sqrt(" + " + ".join(["pow(f, 2)" for f in formula]) + "))"
         return added
@@ -68,7 +70,7 @@ def build_chart(data_url, fields_conf, selectors, width=800, height=500):
         strokeWidth=0.1
     ).transform_lookup(
         lookup='id',
-        from_=alt.LookupData(data_url, 'id', ['county', 'state_id'] + list(fields_conf.keys()))
+        from_=alt.LookupData(data_url, 'id', ['county', 'state_id', 'city_largest'] + list(fields_conf.keys()))
     ).project(
         type='albersUsa'
     )
@@ -78,10 +80,10 @@ def build_chart(data_url, fields_conf, selectors, width=800, height=500):
         base_chart = base_chart.add_selection(s)
     
     base_chart = base_chart.transform_calculate(
-        matchPct=create_similarity(fields_conf, fields_to_selectors)
+        matchPct=create_match_pct(fields_conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(fields_conf, fields_to_selectors)
     ).encode(
-        color=alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1])),
-        tooltip=["county:N", "state_id:N"] + [f"{f}:{conf.get(FIELD_TYPE)}" for f, conf in fields_conf.items()],
+        color=alt.Color("matchPct:Q", bin=alt.Bin(extent=[0, 2], step=0.2)), #, scale=alt.Scale(domain=[0, 2]) if DIST_METHOD in ["l1", "l2"] else alt.Scale(domain=[0, 1])),
+        tooltip=["county:N", "state_id:N", "city_largest:N"] + [f"{f}:{conf.get(FIELD_TYPE)}" for f, conf in fields_conf.items()] + ["matchPct:Q"],
     ).properties(
         width=width,
         height=height
@@ -108,14 +110,15 @@ def get_overrides(reference_county, reference_state, vars_list):
 
 def country_base(data_url, vars_list=None, reference_county=None, reference_state=None):
     conf = get_conf(vars_list)
+    print(reference_county, reference_state)
     do_override = reference_county and reference_state
     county_value_overrides = get_overrides(reference_county, reference_state, conf) if do_override else {}
     base = build_chart(data_url, conf, fields_to_selectors, WIDTH, HEIGHT)
     if do_override:
         base = base.encode(
-        color=alt.condition(f'datum.county == "{reference_county}" && datum.state_id == "{reference_state}"',
-                            alt.value("Grey"),
-                            alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1]))))
+            color=alt.condition(f"datum.county == '{reference_county}' && datum.state_id == '{reference_state}'",
+                                alt.value("Grey"),
+                                alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1]))))
         base = override_inits(base, county_value_overrides)
     return base
 

@@ -6,11 +6,11 @@
   Coldest Daily Temperature: <input type="checkbox" id="low_temp"><br>
   Hottest Daily Temperature: <input type="checkbox" id="high_temp"><br>
   Precipitous Days: <input type="checkbox" id="precip_num_days"><br>
-  Population Density: <input type="checkbox" id="density"><br>
+  Population Density: <input type="checkbox" id="density_group"><br>
   Median Individual Income: <input type="checkbox" id="income_individual_median"><br>
   Home Value: <input type="checkbox" id="home_value"><br>
   Median Rent: <input type="checkbox" id="rent_median"><br>
-  Median Age: <input type="checkbox" id="age_median"><br>
+  Median Age: <input type="checkbox" id="age_median_group"><br>
   Unemployment Rate: <input type="checkbox" id="unemployment_rate_average"><br>
   Crime Rate per 100,000: <input type="checkbox" id="crime_rate_per_100000"><br>
 
@@ -40,7 +40,15 @@
         array.push(checkboxes[i].id)
       }
 
-      const newPage = page + "spec/" + array.join("&")
+      const county_selector = document.querySelector('select[id="countySelect"]')
+      const county = county_selector.options[county_selector.selectedIndex]
+
+      const state_selector = document.querySelector('select[id="stateSelect"]')
+      const state = state_selector.options[state_selector.selectedIndex]
+
+      var newPage = page + "spec/" + array.join(";")
+      if ((county.text !== "--") && (state.text !== "--"))  { newPage = newPage + "?reference_county=" + county.text + "&" + "reference_state=" + state.text}
+      console.log(newPage)
       window.location.href = newPage
     }
 
@@ -68,8 +76,8 @@
 
   <script type="text/javascript" defer>
   // script will parse the URL, extract the everything after the final '/'
-  // then separate any parameters with '&'
-  const paramArr = window.location.href.split("/").slice(-1)[0].split("&")
+  // then separate any parameters with ';'
+  const paramArr = window.location.href.split("/").slice(-1)[0].split("?")[0].split(";")
 
   //iterate through paramArr
   //set checked=true for respective parameters (checkboxes with corresponding variables)
@@ -87,4 +95,7 @@
         selector.appendChild(opt);
     }
   });
+
+<!--  console.log(JSON.parse('{{ Kwargs | tojson | safe}}'))-->
+<!--  console.log(JSON.parse('{{ vars_list | tojson | safe}}'))-->
   </script>
