@@ -5,6 +5,8 @@ from field_confs import *
 
 from vega_datasets import data
 
+DIST_METHOD = "clipped_l1"  # [l1, l2, binary]
+
 WIDTH = 800
 HEIGHT = 500
 dataFilePath = os.path.dirname(os.path.abspath(__file__)) + "/static/data_sources/final_transformed_data.csv"
@@ -24,6 +26,9 @@ county = pd.read_csv(dataFilePath)
 state_dropdown = alt.binding_select(options=sorted(county.state_id.dropna().unique().tolist()))
 state_selector = alt.selection_single(name="state", fields=['state_id'], bind=state_dropdown, init={"state_id": "CA"})
 
+# get the standard deviations
+stddevs = county.std().to_dict()
+
 def create_match_pct(fields_conf, selectors):
     n_fields = len(fields_conf)
     formula = []
@@ -35,6 +40,32 @@ def create_match_pct(fields_conf, selectors):
     added = "(" + " + ".join(formula) + ")"
     return added + f" / {n_fields}"
 
+def create_similarity(fields_conf, selectors):
+    n_fields = len(fields_conf)
+    formula = []
+    for f, conf in fields_conf.items():
+        selector = f"{selectors.get(f).get(SELECTOR).name}.{selectors.get(f).get(SELECTOR_FIELD)}"
+        comp = comparators.get(conf.get(COMPARATOR))
+        if comp == "==":
+            formula.append(f"(1 - (datum.{f} {comp} {selector}))")
+        else:
+            sd = stddevs.get(f)
+            formula.append(f"(abs(datum.{f} - {selector})/{sd})")
+
+    if DIST_METHOD == "clipped_l1":
+        added = "(" + " + ".join([f"min({field}, 1)" for field in formula]) + ")"
+        return f"(1-({added} / {n_fields}))"
+
+    elif DIST_METHOD == "l1":
+        # average l1
+        added = "(" + " + ".join(formula) + ")"
+        return f"(1-({added} / {n_fields}))"
+
+    elif DIST_METHOD == "l2":
+        #l2
+        added = "(1-(sqrt(" + " + ".join(["pow(f, 2)" for f in formula]) + ")))"
+        return added
+
 def build_chart(data_url, fields_conf, selectors, width=800, height=500):
     base_chart = alt.Chart(
         counties_boundaries
@@ -43,7 +74,7 @@ def build_chart(data_url, fields_conf, selectors, width=800, height=500):
         strokeWidth=0.1
     ).transform_lookup(
         lookup='id',
-        from_=alt.LookupData(data_url, 'id', ['county', 'state_id'] + list(fields_conf.keys()))
+        from_=alt.LookupData(data_url, 'id', ['county', 'state_id', 'city_largest'] + list(fields_conf.keys()))
     ).project(
         type='albersUsa'
     )
@@ -53,10 +84,10 @@ def build_chart(data_url, fields_conf, selectors, width=800, height=500):
         base_chart = base_chart.add_selection(s)
     
     base_chart = base_chart.transform_calculate(
-        matchPct = create_match_pct(fields_conf, fields_to_selectors)
+        matchPct=create_match_pct(fields_conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(fields_conf, fields_to_selectors)
     ).encode(
-        color=alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1])),
-        tooltip=["county:N", "state_id:N"] + [f"{f}:{conf.get(FIELD_TYPE)}" for f, conf in fields_conf.items()],
+        color=alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1], bins=[0.1*n for n in range(0,11)])),
+        tooltip=["county:N", "state_id:N", "city_largest:N"] + [f"{f}:{conf.get(FIELD_TYPE)}" for f, conf in fields_conf.items()] + ["matchPct:Q"],
     ).properties(
         width=width,
         height=height
@@ -83,14 +114,15 @@ def get_overrides(reference_county, reference_state, vars_list):
 
 def country_base(data_url, vars_list=None, reference_county=None, reference_state=None):
     conf = get_conf(vars_list)
+    print(reference_county, reference_state)
     do_override = reference_county and reference_state
     county_value_overrides = get_overrides(reference_county, reference_state, conf) if do_override else {}
     base = build_chart(data_url, conf, fields_to_selectors, WIDTH, HEIGHT)
     if do_override:
         base = base.encode(
-        color=alt.condition(f'datum.county == "{reference_county}" && datum.state_id == "{reference_state}"',
-                            alt.value("Grey"),
-                            alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1]))))
+            color=alt.condition(f"datum.county == '{reference_county}' && datum.state_id == '{reference_state}'",
+                                alt.value("Grey"),
+                                alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1], bins=[0.1*n for n in range(0,11)]))))
         base = override_inits(base, county_value_overrides)
     return base
 
@@ -102,7 +134,6 @@ def state_view(data_url, vars_list=None, reference_county=None, reference_state=
     conf = get_conf(vars_list)
     base = country_base(data_url, conf, reference_county, reference_state)
 
-    print(type(base))
     state_specific = alt.layer(
         base.add_selection(state_selector).transform_filter(state_selector),
         outline.transform_filter(
@@ -110,28 +141,36 @@ def state_view(data_url, vars_list=None, reference_county=None, reference_state=
         )
     )
 
-    bars = [alt.vconcat(), alt.vconcat()]
-    n_fields = len(conf)
-    for i, field in enumerate(conf.keys()):
-        field_bars = alt.Chart(data_url).mark_bar(tooltip=True).encode(
-            x=f"{field}:{conf.get(field).get(FIELD_TYPE)}",
+    bars_base = alt.Chart(data_url).mark_bar(tooltip=True).encode(
             y="county:N",
             color="county:N"
+        ).transform_calculate(
+        matchPct=create_match_pct(conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(conf, fields_to_selectors)
         ).add_selection(
             state_selector
         ).transform_filter(
             state_selector
         ).transform_window(
-            rank='rank(county)',
+            rank='rank(matchPct)',
             sort=[alt.SortField("matchPct", order="descending"), alt.SortField('county', order='ascending')]
         ).transform_filter(
             alt.datum.rank <= 10
         ).properties(
             width=WIDTH / 2,
-            height=HEIGHT / 2
+            height=HEIGHT / 3
         )
-        
-        bars[i%2] &= field_bars
+
+    bars = [alt.vconcat(bars_base.encode(x="matchPct:Q")), alt.vconcat()]
+    for i, field in enumerate(conf.keys()):
+        field_bars = bars_base\
+            .encode(x=f"{field}:{conf.get(field).get(FIELD_TYPE)}")
+        # selector = fields_to_selectors.get(field).get(SELECTOR)
+        #
+        # selector_line = alt.Chart()\
+        #     .mark_rule()\
+        #     .add_selection(selector)\
+        #     .encode(y=f"{selector.name}.{selector.get(SELECTOR_FIELD)}")
+        bars[(i+1)%2] &= field_bars
 
 
     state_view = (state_specific & (bars[0] | bars[1])).resolve_scale(
