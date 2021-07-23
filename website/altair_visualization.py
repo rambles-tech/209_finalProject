@@ -86,7 +86,7 @@ def build_chart(data_url, fields_conf, selectors, width=800, height=500):
     base_chart = base_chart.transform_calculate(
         matchPct=create_match_pct(fields_conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(fields_conf, fields_to_selectors)
     ).encode(
-        color=alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1])),#scale=alt.Scale(domain=[0, 1], bins=[0.1*n for n in range(0, 11)])),
+        color=alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1], bins=[0.1*n for n in range(0,11)])),
         tooltip=["county:N", "state_id:N", "city_largest:N"] + [f"{f}:{conf.get(FIELD_TYPE)}" for f, conf in fields_conf.items()] + ["matchPct:Q"],
     ).properties(
         width=width,
@@ -122,7 +122,7 @@ def country_base(data_url, vars_list=None, reference_county=None, reference_stat
         base = base.encode(
             color=alt.condition(f"datum.county == '{reference_county}' && datum.state_id == '{reference_state}'",
                                 alt.value("Grey"),
-                                alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1]))))
+                                alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1], bins=[0.1*n for n in range(0,11)]))))
         base = override_inits(base, county_value_overrides)
     return base
 
@@ -141,27 +141,36 @@ def state_view(data_url, vars_list=None, reference_county=None, reference_state=
         )
     )
 
-    bars = [alt.vconcat(), alt.vconcat()]
-    for i, field in enumerate(conf.keys()):
-        field_bars = alt.Chart(data_url).mark_bar(tooltip=True).encode(
-            x=f"{field}:{conf.get(field).get(FIELD_TYPE)}",
+    bars_base = alt.Chart(data_url).mark_bar(tooltip=True).encode(
             y="county:N",
             color="county:N"
+        ).transform_calculate(
+        matchPct=create_match_pct(conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(conf, fields_to_selectors)
         ).add_selection(
             state_selector
         ).transform_filter(
             state_selector
         ).transform_window(
-            rank='rank(county)',
+            rank='rank(matchPct)',
             sort=[alt.SortField("matchPct", order="descending"), alt.SortField('county', order='ascending')]
         ).transform_filter(
             alt.datum.rank <= 10
         ).properties(
             width=WIDTH / 2,
-            height=HEIGHT / 2
+            height=HEIGHT / 3
         )
-        
-        bars[i%2] &= field_bars
+
+    bars = [alt.vconcat(bars_base.encode(x="matchPct:Q")), alt.vconcat()]
+    for i, field in enumerate(conf.keys()):
+        field_bars = bars_base\
+            .encode(x=f"{field}:{conf.get(field).get(FIELD_TYPE)}")
+        # selector = fields_to_selectors.get(field).get(SELECTOR)
+        #
+        # selector_line = alt.Chart()\
+        #     .mark_rule()\
+        #     .add_selection(selector)\
+        #     .encode(y=f"{selector.name}.{selector.get(SELECTOR_FIELD)}")
+        bars[(i+1)%2] &= field_bars
 
 
     state_view = (state_specific & (bars[0] | bars[1])).resolve_scale(
