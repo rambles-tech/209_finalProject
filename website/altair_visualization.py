@@ -5,7 +5,7 @@ from field_confs import *
 
 from vega_datasets import data
 
-DIST_METHOD = "l1"  # [l1, l2, binary]
+DIST_METHOD = "clipped_l1"  # [l1, l2, binary]
 
 WIDTH = 800
 HEIGHT = 500
@@ -52,7 +52,11 @@ def create_similarity(fields_conf, selectors):
             sd = stddevs.get(f)
             formula.append(f"(abs(datum.{f} - {selector})/{sd})")
 
-    if DIST_METHOD == "l1":
+    if DIST_METHOD == "clipped_l1":
+        added = "(" + " + ".join([f"min({field}, 1)" for field in formula]) + ")"
+        return f"(1-({added} / {n_fields}))"
+
+    elif DIST_METHOD == "l1":
         # average l1
         added = "(" + " + ".join(formula) + ")"
         return f"(1-({added} / {n_fields}))"
@@ -82,7 +86,7 @@ def build_chart(data_url, fields_conf, selectors, width=800, height=500):
     base_chart = base_chart.transform_calculate(
         matchPct=create_match_pct(fields_conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(fields_conf, fields_to_selectors)
     ).encode(
-        color=alt.Color("matchPct:Q", bin=alt.Bin(extent=[0, 2], step=0.2)), #, scale=alt.Scale(domain=[0, 2]) if DIST_METHOD in ["l1", "l2"] else alt.Scale(domain=[0, 1])),
+        color=alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1])),#scale=alt.Scale(domain=[0, 1], bins=[0.1*n for n in range(0, 11)])),
         tooltip=["county:N", "state_id:N", "city_largest:N"] + [f"{f}:{conf.get(FIELD_TYPE)}" for f, conf in fields_conf.items()] + ["matchPct:Q"],
     ).properties(
         width=width,
@@ -130,7 +134,6 @@ def state_view(data_url, vars_list=None, reference_county=None, reference_state=
     conf = get_conf(vars_list)
     base = country_base(data_url, conf, reference_county, reference_state)
 
-    print(type(base))
     state_specific = alt.layer(
         base.add_selection(state_selector).transform_filter(state_selector),
         outline.transform_filter(
@@ -139,7 +142,6 @@ def state_view(data_url, vars_list=None, reference_county=None, reference_state=
     )
 
     bars = [alt.vconcat(), alt.vconcat()]
-    n_fields = len(conf)
     for i, field in enumerate(conf.keys()):
         field_bars = alt.Chart(data_url).mark_bar(tooltip=True).encode(
             x=f"{field}:{conf.get(field).get(FIELD_TYPE)}",
