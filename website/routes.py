@@ -22,8 +22,11 @@ def country_spec(vars_list):
   data_url = "/~skylerroh/w209/static/data_sources/final_transformed_data.csv"
   var_names = vars_list.split(';') if vars_list else None
   kwargs = {s: request.args.get(s) for s in ["reference_county", "reference_state"]}
+  county = kwargs["reference_county"]
+  state = kwargs["reference_state"]
   vega_spec = alt_vis.country_view(data_url, var_names, **kwargs)
-  return render_template('country.html', vega_spec=vega_spec, Kwargs=kwargs, vars_list=vars_list)
+  return render_template('country.html', vega_spec=vega_spec, Kwargs=kwargs, vars_list=vars_list,
+                         reference_for_title = f"{county}, {state}" if county and state else "None")
 
 @app.route('/state/')
 def state():
@@ -34,8 +37,11 @@ def state_spec(vars_list):
   data_url = "/~skylerroh/w209/static/data_sources/final_transformed_data.csv"
   var_names = vars_list.split(';') if vars_list else None
   kwargs = {s: request.args.get(s) for s in ["reference_county", "reference_state"]}
+  county = kwargs["reference_county"]
+  state = kwargs["reference_state"]
   vega_spec = alt_vis.state_view(data_url, var_names, **kwargs)
-  return render_template('state.html', vega_spec=vega_spec) 
+  return render_template('state.html', vega_spec=vega_spec,
+                         reference_for_title = f"{county}, {state}" if county and state else "None")
 
 @app.route('/compare/')
 def compare():
