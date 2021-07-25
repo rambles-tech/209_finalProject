@@ -3,6 +3,10 @@
 	{% include "userSelection.html" %}
 	<h1>Explore New Regions of the US</h1>
 	<div class="row">
+		<h4>Reference Values initialized based on: <strong>{{ reference_for_title }}</strong><br>
+		<i><strong>matchPct</strong></i> calculated based on selected variables using the following formula:<br>
+		&emsp;&emsp;avg(min(1, abs(x<sub>i</sub> - y<sub>i</sub>) / sd<sub>i</sub>))<br>
+			&emsp;where x<sub>i</sub> is the county value and y<sub>i</sub> is the reference value for field i</h4>
 		<div class="col-lg">
 			<div id="slider">
 			  <div id="oldchildslider"></div>
