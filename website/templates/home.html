@@ -2,4 +2,7 @@
 {% block content %}
 	<h1>Motivation</h1>
 	<p>The goal of this project is to provide prospective movers with a tool to compare counties across the United States based on criteria of interest.</p>
+	<form action="{{ url_for('country') }}">
+		<input type="submit" value="Get Started" />
+	</form>
 {% endblock %}
