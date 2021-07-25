@@ -23,8 +23,6 @@ outline = alt.Chart(state_boundaries).mark_geoshape(stroke='black', fillOpacity=
 
 # define state selection
 county = pd.read_csv(dataFilePath)
-state_dropdown = alt.binding_select(options=sorted(county.state_id.dropna().unique().tolist()))
-state_selector = alt.selection_single(name="state", fields=['state_id'], bind=state_dropdown, init={"state_id": "CA"})
 
 # get the standard deviations
 stddevs = county.std().to_dict()
@@ -159,6 +157,9 @@ def country_view(data_url, vars_list=None, reference_county=None, reference_stat
     return base.to_dict()
 
 def state_view(data_url, vars_list=None, reference_county=None, reference_state=None):
+    state_dropdown = alt.binding_select(options=sorted(county.state_id.dropna().unique().tolist()))
+    state_selector = alt.selection_single(name="state", fields=['state_id'], bind=state_dropdown, init={"state_id": reference_state if reference_state else "CA"})
+
     conf = get_conf(vars_list)
     base = country_base(data_url, conf, reference_county, reference_state)
 
