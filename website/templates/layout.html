@@ -5,6 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <h1>W209 Final Project: Chris Donotan, Dhyani Parekh, Skyler Roh</h1>
     <h2>Life Locator</h2>
     <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong>	   
@@ -27,6 +28,8 @@
       {% block content %}
       {% endblock %}
     </div>
-     
   </body>
+  <script>
+        persistReferenceCounty();
+  </script>
 </html>
