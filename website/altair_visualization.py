@@ -126,8 +126,36 @@ def country_base(data_url, vars_list=None, reference_county=None, reference_stat
         base = override_inits(base, county_value_overrides)
     return base
 
+def bars_base(data_url, fields_conf, state_selector=None):
+    bars = alt.Chart(data_url).mark_bar(tooltip=True).encode(
+        y="county:N",
+        color="county:N"
+    ).transform_calculate(
+        matchPct=create_match_pct(fields_conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(fields_conf,                                                                                  fields_to_selectors)
+    )
+    if state_selector:
+        bars = bars.add_selection(
+            state_selector
+        ).transform_filter(
+            state_selector
+        )
+
+    return bars.transform_window(
+        rank='rank(matchPct)',
+        sort=[alt.SortField("matchPct", order="descending"), alt.SortField('county', order='ascending')]
+    ).transform_filter(
+        alt.datum.rank <= 10
+    ).properties(
+        width=WIDTH / 2,
+        height=HEIGHT / 3
+    )
+
 def country_view(data_url, vars_list=None, reference_county=None, reference_state=None):
+    conf = get_conf(vars_list)
     base = country_base(data_url, vars_list, reference_county, reference_state)
+    base &= bars_base(data_url, conf) \
+        .transform_calculate("County", "datum.county + ', ' + datum.state_id") \
+        .encode(x=alt.X("matchPct:Q", scale=alt.Scale(domain=[0, 1])), y=alt.Y("County:N", sort="-x"))
     return base.to_dict()
 
 def state_view(data_url, vars_list=None, reference_county=None, reference_state=None):
@@ -141,29 +169,16 @@ def state_view(data_url, vars_list=None, reference_county=None, reference_state=
         )
     )
 
-    bars_base = alt.Chart(data_url).mark_bar(tooltip=True).encode(
-            y="county:N",
-            color="county:N"
-        ).transform_calculate(
-        matchPct=create_match_pct(conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(conf, fields_to_selectors)
-        ).add_selection(
-            state_selector
-        ).transform_filter(
-            state_selector
-        ).transform_window(
-            rank='rank(matchPct)',
-            sort=[alt.SortField("matchPct", order="descending"), alt.SortField('county', order='ascending')]
-        ).transform_filter(
-            alt.datum.rank <= 10
-        ).properties(
-            width=WIDTH / 2,
-            height=HEIGHT / 3
-        )
+    bars_base_chart = bars_base(data_url, conf, state_selector)
 
-    bars = [alt.vconcat(bars_base.encode(x="matchPct:Q")), alt.vconcat()]
+    bars = [alt.vconcat(
+        bars_base_chart.encode(x=alt.X("matchPct:Q", scale=alt.Scale(domain=[0, 1])),
+                               y=alt.Y("county:N", sort=alt.SortField("matchPct", order="descending")))),
+        alt.vconcat()]
     for i, field in enumerate(conf.keys()):
-        field_bars = bars_base\
-            .encode(x=f"{field}:{conf.get(field).get(FIELD_TYPE)}")
+        field_bars = bars_base_chart\
+            .encode(x=f"{field}:{conf.get(field).get(FIELD_TYPE)}",
+                    y=alt.Y("county:N", sort=alt.SortField("matchPct", order="descending")))
         # selector = fields_to_selectors.get(field).get(SELECTOR)
         #
         # selector_line = alt.Chart()\
