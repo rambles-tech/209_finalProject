@@ -18,7 +18,14 @@
   const newparent = document.getElementById('slider');
   const oldchild = document.getElementById("oldchildslider");
   newparent.replaceChild(sliders[0], oldchild);
-}).catch(console.error);;
+
+}).catch(console.error);
+var button = document.createElement("button")
+button.setAttribute("id", 'addComparison')
+button.setAttribute("onclick", "createStateDropdown('{{ url_for('static', filename='data_sources/county_by_state_list.json') }}')")
+button.innerHTML="Add County";
+document.getElementById("countySelections").prepend(document.createElement("br"));
+document.getElementById("countySelections").prepend(button);
 		</script>
   	</div>
 {% endblock %}
