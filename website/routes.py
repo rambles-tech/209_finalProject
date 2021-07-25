@@ -37,5 +37,17 @@ def state_spec(vars_list):
   vega_spec = alt_vis.state_view(data_url, var_names, **kwargs)
   return render_template('state.html', vega_spec=vega_spec) 
 
+@app.route('/compare/')
+def compare():
+  return compare_spec(None)
+
+@app.route('/compare/spec/<vars_list>')
+def compare_spec(vars_list):
+  data_url = "/~skylerroh/w209/static/data_sources/final_transformed_data.csv"
+  var_names = vars_list.split(';') if vars_list else None
+  kwargs = {s: request.args.get(s) for s in ["reference_county", "reference_state"]}
+  vega_spec = alt_vis.state_view(data_url, var_names, **kwargs)
+  return render_template('compare.html', vega_spec=vega_spec)
+
 if __name__ == '__main__':
   app.run(debug=False)
