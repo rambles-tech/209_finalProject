@@ -129,7 +129,7 @@ def bars_base(data_url, fields_conf, state_selector=None):
         y="county:N",
         color="county:N"
     ).transform_calculate(
-        matchPct=create_match_pct(fields_conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(fields_conf,                                                                                  fields_to_selectors)
+        matchPct=create_match_pct(fields_conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(fields_conf, fields_to_selectors)
     )
     if state_selector:
         bars = bars.add_selection(
@@ -194,3 +194,38 @@ def state_view(data_url, vars_list=None, reference_county=None, reference_state=
     )
 
     return state_view.to_dict()
+
+def comp_view(data_url, counties_list, vars_list=None):
+    conf = get_conf(vars_list)
+    # base = country_base(data_url, conf, reference_county, reference_state)
+
+    # state_specific = alt.layer(
+    #     base,
+    #     outline
+    # )
+    condition = [f"((datum.county == '{c[0]}') & (datum.state_id == '{c[1]}'))" for c in counties_list]
+    bars_base_chart = alt.Chart(data_url).mark_bar(tooltip=True).encode(
+        y="county:N",
+        color="county:N"
+    ).transform_filter(
+        " | ".join(condition)
+    ).properties(
+        width=WIDTH / 2,
+        height=HEIGHT / 3
+    )
+
+    bars = [alt.vconcat(), alt.vconcat()]
+
+    for i, field in enumerate(conf.keys()):
+        field_bars = bars_base_chart\
+            .encode(x=f"{field}:{conf.get(field).get(FIELD_TYPE)}",
+                    y=alt.Y("county:N", sort=alt.SortField("county", order="ascending")))
+        # selector = fields_to_selectors.get(field).get(SELECTOR)
+        #
+        # selector_line = alt.Chart()\
+        #     .mark_rule()\
+        #     .add_selection(selector)\
+        #     .encode(y=f"{selector.name}.{selector.get(SELECTOR_FIELD)}")
+        bars[i%2] &= field_bars
+
+    return (bars[0] | bars[1]).to_dict()

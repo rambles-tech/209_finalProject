@@ -15,22 +15,37 @@ function generateView() {
         array.push(checkboxes[i].id)
         }
 
-        const county_selector = document.querySelector('select[id="countySelect"]')
+        const county_selector = document.querySelector('select[id="countySelect_0"]')
         const county = county_selector.options[county_selector.selectedIndex]
 
-        const state_selector = document.querySelector('select[id="stateSelect"]')
+        const state_selector = document.querySelector('select[id="stateSelect_0"]')
         const state = state_selector.options[state_selector.selectedIndex]
 
+        var countiesArr = []
+        var numSelectors = document.querySelectorAll('select[class=stateSelectors').length;
+        for (var i = 0; i < numSelectors; i++) {
+            const county_selector = document.querySelector(`select[id="countySelect_${i}"]`)
+            const county = county_selector.options[county_selector.selectedIndex].text
+
+            const state_selector = document.querySelector(`select[id="stateSelect_${i}"]`)
+            const state = state_selector.options[state_selector.selectedIndex].text
+            countiesArr.push(`${county},${state}`)
+        }
+
         var newPage = page + "spec/" + array.join(";")
-        if ((county.text !== "--") && (state.text !== "--"))  { newPage = newPage + "?reference_county=" + county.text + "&" + "reference_state=" + state.text}
+        if ((county.text !== "--") && (state.text !== "--"))  {
+            newPage = newPage +
+            "?reference_county=" + county.text + "&" +
+            "reference_state=" + state.text + "&" +
+            "counties_list=" + countiesArr.join("|")}
         console.log(newPage)
         window.location.href = newPage
     }
 }
 
-function changeCounties(state, loc) {
+function changeCounties(state, id, loc) {
   jQuery.getJSON(loc, function(json) {
-    var selector = document.querySelector('select[id="countySelect"]')
+    var selector = document.querySelector(`select[id="${id}"]`)
 
     jQuery("#countySelect").empty();
 
@@ -49,15 +64,33 @@ function changeCounties(state, loc) {
   });
 }
 
-function createStateDropdown(data_loc, id) {
+function createStateDropdown(data_loc) {
     //populate the state dropdown
     jQuery.getJSON(data_loc, function(json) {
-    var countySelections = document.querySelector('div[id=countySelections]')
+    var numSelectors = document.querySelectorAll('select[class=stateSelectors').length;
+    var countySelections = document.querySelector('div[id=countySelections]');
     var newSelectState = document.createElement("SELECT");
-    newSelectState.setAttribute("id", "stateSelect"+id);
-    countySelections.appendChild(newSelectState);
+    var stateLabel = document.createElement("label");
+    stateLabel.setAttribute("for", `stateSelect_${numSelectors}`);
+    stateLabel.innerHTML = "State"
+    newSelectState.setAttribute("id", `stateSelect_${numSelectors}`);
+    newSelectState.setAttribute("class", "stateSelectors");
+    newSelectState.setAttribute("onchange",
+        onchange=`if (this.selectedIndex) changeCounties(this.options[this.selectedIndex].text, 'countySelect_${numSelectors}', '${data_loc}')`);
+    newSelectState.innerHTML = "<option value='--'>--</option>";
 
-//    var selector = document.querySelector('select[id="stateSelect"+id]')
+    var newSelectCounty = document.createElement("SELECT");
+    var countyLabel = document.createElement("label");
+    countyLabel.setAttribute("for", `countySelect_${numSelectors}`);
+    countyLabel.innerHTML = "County"
+    newSelectCounty.setAttribute("id", `countySelect_${numSelectors}`);
+    newSelectCounty.innerHTML = "<option value='--'>--</option>";
+
+    countySelections.appendChild(stateLabel);
+    countySelections.appendChild(newSelectState);
+    countySelections.appendChild(countyLabel);
+    countySelections.appendChild(newSelectCounty);
+    countySelections.appendChild(document.createElement("br"));
 
     for (let s in json) {
         var opt = document.createElement('option');
@@ -93,7 +126,7 @@ function persistReferenceCounty() {
     var search = window.location.search.substring(1);
     var queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
     console.log(queryParams);
-    var stateSelect = document.querySelector('select[id="stateSelect"]');
+    var stateSelect = document.getElementById("stateSelect_0");
     stateSelect.value = queryParams["reference_state"];
     changeCounties(queryParams["reference_state"]);
     document.getElementById("countySelect").value = queryParams["reference_county"];
