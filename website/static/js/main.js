@@ -43,11 +43,19 @@ function generateView() {
     }
 }
 
+function removeAll(selectBox) {
+    while (selectBox.options.length > 0) {
+        selectBox.remove(0);
+    }
+}
+
 function changeCounties(state, id, loc) {
   jQuery.getJSON(loc, function(json) {
     var selector = document.querySelector(`select[id="${id}"]`)
 
-    jQuery("#countySelect").empty();
+    //remove all counties currently in the
+    //drop down select box
+    removeAll(selector);
 
     var opt = document.createElement('option');
     opt.value = '--';
@@ -98,11 +106,10 @@ function createStateDropdown(data_loc) {
         opt.innerHTML = s;
         newSelectState.appendChild(opt);
     }
-    });
-
-    if (numSelectors == 0) {
-        persistReferenceCounty(newSelectState, newSelectCounty, '${data_loc}');
+    if (numSelectors === 0) {
+        persistReferenceCounty(newSelectState, newSelectCounty, numSelectors, json);
     }
+    });
 }
 
 function selectAllChecks() {
@@ -125,13 +132,35 @@ function persistChecks() {
     if (paramArr !== "") { checks.forEach(check => check.checked=(paramArr.includes(check.id))) };
 }
 
-function persistReferenceCounty(stateSelect, countySelect, data_loc) {
+function persistReferenceCounty(stateSelect, countySelect, numSelector, json) {
   if (window.location.search) {
     var search = window.location.search.substring(1);
     var queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
-    console.log(queryParams);
-    stateSelect.value = queryParams["reference_state"];
-    changeCounties(queryParams["reference_state"], countySelect.id, '${data_loc}');
-    countySelect.value = queryParams["reference_county"];
-  }
+    var cList = queryParams["counties_list"].split("|");
+    if (numSelector < cList.length) {
+        const countyState = cList[numSelector].split(",")
+        stateSelect.value = countyState[1];
+        stateSelect.text = countyState[1];
+
+        //remove all counties currently in the
+        //drop down select box
+        removeAll(countySelect);
+
+        var opt = document.createElement('option');
+        opt.value = '--';
+        opt.innerHTML = '--';
+        countySelect.appendChild(opt);
+
+        console.log(json[countyState[1]])
+        json[countyState[1]].forEach(c => {
+            var opt = document.createElement('option');
+            opt.value = c;
+            opt.innerHTML = c;
+            countySelect.appendChild(opt);
+        })
+        console.log(countySelect.options)
+        countySelect.value = countyState[0];
+        countySelect.text = countyState[0];
+        }
+    }
 }
