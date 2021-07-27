@@ -1,6 +1,6 @@
 function generateView() {
     // insert call to appropriate page here
-    const page = window.location.href.split("spec")[0]
+    const page = window.location.href.split("?")[0].split("/spec")[0].replace(new RegExp("/+$"), "")
 
     //following code checks all checkboxes for state
     //creates array with id names of all checked boxes
@@ -32,7 +32,7 @@ function generateView() {
             countiesArr.push(`${county},${state}`)
         }
 
-        var newPage = page + "spec/" + array.join(";")
+        var newPage = page + "/spec/" + array.join(";")
         if ((county.text !== "--") && (state.text !== "--"))  {
             newPage = newPage +
             "?reference_county=" + county.text + "&" +
@@ -56,8 +56,6 @@ function changeCounties(state, id, loc) {
     //remove all counties currently in the
     //drop down select box
     removeAll(selector);
-
-    jQuery("#countySelect").empty();
 
     var opt = document.createElement('option');
     opt.value = '--';
@@ -108,6 +106,9 @@ function createStateDropdown(data_loc) {
         opt.innerHTML = s;
         newSelectState.appendChild(opt);
     }
+    if (numSelectors === 0) {
+        persistReferenceCounty(newSelectState, newSelectCounty, numSelectors, json);
+    }
     });
 }
 
@@ -131,20 +132,35 @@ function persistChecks() {
     if (paramArr !== "") { checks.forEach(check => check.checked=(paramArr.includes(check.id))) };
 }
 
-function persistReferenceCounty() {
+function persistReferenceCounty(stateSelect, countySelect, numSelector, json) {
   if (window.location.search) {
     var search = window.location.search.substring(1);
     var queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
-    console.log(queryParams);
-    var stateSelect = document.getElementById("stateSelect_0");
-    stateSelect.value = queryParams["reference_state"];
-    changeCounties(queryParams["reference_state"]);
-    document.getElementById("countySelect").value = queryParams["reference_county"];
-  }
-}
+    var cList = queryParams["counties_list"].split("|");
+    if (numSelector < cList.length) {
+        const countyState = cList[numSelector].split(",")
+        stateSelect.value = countyState[1];
+        stateSelect.text = countyState[1];
 
-//var search = window.location.search.substring(1);
-//var queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
-//console.log(queryParams);
-//document.getElementById("stateSelect").val = queryParams["reference_state"];
-//persistReferenceCounty();
+        //remove all counties currently in the
+        //drop down select box
+        removeAll(countySelect);
+
+        var opt = document.createElement('option');
+        opt.value = '--';
+        opt.innerHTML = '--';
+        countySelect.appendChild(opt);
+
+        console.log(json[countyState[1]])
+        json[countyState[1]].forEach(c => {
+            var opt = document.createElement('option');
+            opt.value = c;
+            opt.innerHTML = c;
+            countySelect.appendChild(opt);
+        })
+        console.log(countySelect.options)
+        countySelect.value = countyState[0];
+        countySelect.text = countyState[0];
+        }
+    }
+}
