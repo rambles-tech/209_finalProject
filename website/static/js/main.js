@@ -75,6 +75,9 @@ function createStateDropdown(data_loc) {
     stateLabel.innerHTML = "State"
     newSelectState.setAttribute("id", `stateSelect_${numSelectors}`);
     newSelectState.setAttribute("class", "stateSelectors");
+    
+    jQuery("#countySelect").empty();
+
     newSelectState.setAttribute("onchange",
         onchange=`if (this.selectedIndex) changeCounties(this.options[this.selectedIndex].text, 'countySelect_${numSelectors}', '${data_loc}')`);
     newSelectState.innerHTML = "<option value='--'>--</option>";
