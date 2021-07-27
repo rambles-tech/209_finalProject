@@ -43,9 +43,19 @@ function generateView() {
     }
 }
 
+function removeAll(selectBox) {
+    while (selectBox.options.length > 0) {
+        selectBox.remove(0);
+    }
+}
+
 function changeCounties(state, id, loc) {
   jQuery.getJSON(loc, function(json) {
     var selector = document.querySelector(`select[id="${id}"]`)
+
+    //remove all counties currently in the
+    //drop down select box
+    removeAll(selector);
 
     jQuery("#countySelect").empty();
 
