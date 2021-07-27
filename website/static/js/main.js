@@ -1,6 +1,6 @@
 function generateView() {
     // insert call to appropriate page here
-    const page = window.location.href.split("spec")[0]
+    const page = window.location.href.split("?")[0].split("/spec")[0].replace(new RegExp("/+$"), "")
 
     //following code checks all checkboxes for state
     //creates array with id names of all checked boxes
@@ -32,7 +32,7 @@ function generateView() {
             countiesArr.push(`${county},${state}`)
         }
 
-        var newPage = page + "spec/" + array.join(";")
+        var newPage = page + "/spec/" + array.join(";")
         if ((county.text !== "--") && (state.text !== "--"))  {
             newPage = newPage +
             "?reference_county=" + county.text + "&" +
@@ -99,6 +99,10 @@ function createStateDropdown(data_loc) {
         newSelectState.appendChild(opt);
     }
     });
+
+    if (numSelectors == 0) {
+        persistReferenceCounty(newSelectState, newSelectCounty, '${data_loc}');
+    }
 }
 
 function selectAllChecks() {
@@ -121,20 +125,13 @@ function persistChecks() {
     if (paramArr !== "") { checks.forEach(check => check.checked=(paramArr.includes(check.id))) };
 }
 
-function persistReferenceCounty() {
+function persistReferenceCounty(stateSelect, countySelect, data_loc) {
   if (window.location.search) {
     var search = window.location.search.substring(1);
     var queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
     console.log(queryParams);
-    var stateSelect = document.getElementById("stateSelect_0");
     stateSelect.value = queryParams["reference_state"];
-    changeCounties(queryParams["reference_state"]);
-    document.getElementById("countySelect").value = queryParams["reference_county"];
+    changeCounties(queryParams["reference_state"], countySelect.id, '${data_loc}');
+    countySelect.value = queryParams["reference_county"];
   }
 }
-
-//var search = window.location.search.substring(1);
-//var queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
-//console.log(queryParams);
-//document.getElementById("stateSelect").val = queryParams["reference_state"];
-//persistReferenceCounty();
