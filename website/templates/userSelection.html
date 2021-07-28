@@ -1,26 +1,26 @@
- <h1>Select the data that matters to you:<br></h1>
+ <strong>Choose only the variables you wish to consider:<br></strong>
   <p></p>
 
-  <!-- create the checkboxes-->
-  <strong>Data Fields</strong><br>
+  <!-- create the checkboxes
+  <strong>Data Fields</strong><br>-->
   <div class="checks">
       <button id="selectAll" onclick="selectAllChecks()">Select All</button>
       <button id="clearAll" onclick="clearAllChecks()">Clear</button><br>
-      Coldest Daily Temperature: <input type="checkbox" id="low_temp"><br>
-      Hottest Daily Temperature: <input type="checkbox" id="high_temp"><br>
-      Precipitous Days: <input type="checkbox" id="precip_num_days"><br>
-      Population Density: <input type="checkbox" id="density_group"><br>
-      Median Individual Income: <input type="checkbox" id="income_individual_median"><br>
-      Home Value: <input type="checkbox" id="home_value"><br>
-      Median Rent: <input type="checkbox" id="rent_median"><br>
-      Median Age: <input type="checkbox" id="age_median_group"><br>
-      Unemployment Rate: <input type="checkbox" id="unemployment_rate_average"><br>
-      Crime Rate per 100,000: <input type="checkbox" id="crime_rate_per_100000"><br>
+      <input type="checkbox" id="low_temp">  Coldest Daily Temperature<br>
+      <input type="checkbox" id="high_temp"> Hottest Daily Temperature<br>
+      <input type="checkbox" id="precip_num_days"> Precipitous Days<br>
+      <input type="checkbox" id="density_group"> Population Density<br>
+      <input type="checkbox" id="income_individual_median"> Median Individual Income<br>
+      <input type="checkbox" id="home_value"> Home Value<br>
+      <input type="checkbox" id="rent_median"> Median Rent<br>
+      <input type="checkbox" id="age_median_group"> Median Age<br>
+      <input type="checkbox" id="unemployment_rate_average"> Unemployment Rate<br>
+      <input type="checkbox" id="crime_rate_per_100000"> Crime Rate per 100,000<br>
   </div><br>
 
 
   <!-- Selection for reference county-->
- <strong>Reference County</strong><br>
+ <strong>Reference County:</strong> <i>Will set selected variables to chosen county in order to compare against</i><br>
  <div id="countySelections">
 <!--     <button id="addComparison" onclick="createStateDropdown('{{ url_for('static', filename='data_sources/county_by_state_list.json') }}')">Add County</button>-->
 <!--     <label for="stateSelect_0">State</label>-->

@@ -1,7 +1,51 @@
 {% extends "layout.html" %}
 {% block content %}
-	<h1>Motivation</h1>
-	<p>The goal of this project is to provide prospective movers with a tool to compare counties across the United States based on criteria of interest.</p>
+
+  <h2> Welcome to The Life Locator</h2>
+	<strong> A W209 Final Project created by:<br>
+		Chris Donaton, Dhyani Parekh, Skyler Roh</strong>
+
+	<h2>Purpose</h2>
+
+  <section>
+	    <img src="https://i.ibb.co/1vLg4k2/breakdown.png" ALIGN="right"  HSPACE="0" VSPACE="0"/>
+
+      <br><br>
+
+      <p>According to the American Community Survey (ACS), around 40 million Americans, or 13%, move each year.  Although most moves are driven by careers,
+			there are many opportunities for Americans to chart their own destinations.
+
+      <br><br>
+
+      <b>But how do potential movers decide where to move?</b>
+
+      <br><br>
+			<u>Enter The Life Locator</u><br>
+			Life Locator is designed to distill many streams of data and display it all in a user-friendly view enabling a user to find preference-matched counties and compare specific counties. </p>
+  <br><br>
+  </section>
+
+  <section>
+	<h2>Overview:</h2>
+  <p> Along the top of each page is a black bar with the navigation buttons that will bring you to the following pages:
+
+		<dl>
+		  <strong><dt>Country View</dt></strong>
+			  <dd>- View all of the United States</dd>
+				<dd>- Check the boxes for the variables that matter to you</dd>
+				<dd>- If desired, select a reference county from the drop down to compare against</dd>
+				<dd>- Then 'Generate View' to display a heatmap that shows matching counties</dd>
+				<dd>- Here you can adjust the sliders for each selected variable to suit your needs</dd>
+
+		  <strong><dt>State View</dt></strong>
+			  <dd>- Just like Country View except it focuses on a single state</dd>
+
+			<strong><dt>Compare</dt></strong>
+			  <dd>- On this page, you can select multiple counties to directly compare against</dd>
+		</dl>
+</section>
+
+
 	<form action="{{ url_for('country') }}">
 		<input type="submit" value="Get Started" />
 	</form>
