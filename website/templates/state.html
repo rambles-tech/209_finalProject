@@ -3,9 +3,7 @@
 	{% include "userSelection.html" %}
 	<h1>Compare Details within Each State</h1>
 	<h4>Reference Values initialized based on: <strong>{{ reference_for_title }}</strong><br>
-	<i><strong>matchPct</strong></i> calculated based on selected variables using the following formula:<br>
-	&emsp;&emsp;avg(min(1, abs(x<sub>i</sub> - y<sub>i</sub>) / sd<sub>i</sub>))<br>
-	&emsp;where x<sub>i</sub> is the county value and y<sub>i</sub> is the reference value for field i</h4>
+
 	<div class="row">
 		<div class="col-lg">
 			<div id="slider">
@@ -24,4 +22,9 @@
 }).catch(console.error);;
 		</script>
   	</div>
+
+		<i><strong>matchPct</strong></i> calculated based on selected variables using the following formula:<br>
+		&emsp;&emsp;avg(min(1, abs(x<sub>i</sub> - y<sub>i</sub>) / sd<sub>i</sub>))<br>
+		&emsp;where x<sub>i</sub> is the county value and y<sub>i</sub> is the reference value for field i</h4>
+		
 {% endblock %}
