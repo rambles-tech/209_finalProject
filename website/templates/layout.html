@@ -6,13 +6,14 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    
+
     <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong>
   </head>
-  <body>
+
   <header>
-   <div class="container">
+   <div id='header'>
      <h1 class="logo">W209: Life Locator</h1>
+
        <strong><nav>
           <ul class="menu">
             <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -21,13 +22,16 @@
               <li><a href="{{ url_for('compare') }}">Compare</a></li>
           </ul>
         </nav></strong>
+
    </div>
  </header>
-
+ <body>
+<div class="container" id="body">
     <div class="container" id="content_block">
       {% block content %}
       {% endblock %}
     </div>
+  </div>
   </body>
   <script>
         persistReferenceCounty();

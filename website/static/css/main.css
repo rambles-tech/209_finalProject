@@ -1,20 +1,38 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #444;
-}
+
 
 /*
  * Create dark grey header with a white logo
  */
 
+ /*
+ body {
+   margin: 0;
+   padding: 0;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   color: #444;
+ }
 header {
-  background-color: #2B2B2B;
-  height: 35px;
-  width: 100%;
-  opacity: .9;
-  margin-bottom: 10px;
+    background-color: #2B2B2B;
+    height: 35px;
+    width: 100%;
+    opacity: .9;
+    margin-bottom: 10px;
+}
+*/
+
+#header {
+    position: fixed;
+    top: 0px;
+    height: 35px;
+    width: 100%;
+    background-color: #2B2B2B;
+}
+#body{
+  margin-top: 35px;
+  height: 3000px;
+  overflow: auto;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #444;
 }
 
 header h1.logo {
@@ -88,6 +106,7 @@ h4 {
 .menu {
   float: right;
   margin-top: 8px;
+  margin-right: 20px;
 }
 
 .menu li {
