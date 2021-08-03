@@ -14,7 +14,7 @@ dataFilePath = os.path.dirname(os.path.abspath(__file__)) + "/static/data_source
 counties_boundaries = alt.topo_feature(data.us_10m.url, 'counties')
 state_boundaries = alt.topo_feature(data.us_10m.url, 'states')
 
-outline = alt.Chart(state_boundaries).mark_geoshape(stroke='black', fillOpacity=0).project(
+outline = alt.Chart(state_boundaries).mark_geoshape(stroke='darkslategrey', fillOpacity=0).project(
     type='albersUsa'
 ).properties(
     width=WIDTH,
@@ -82,10 +82,13 @@ def build_chart(data_url, fields_conf, selectors, width=800, height=500):
         base_chart = base_chart.add_selection(s)
     
     base_chart = base_chart.transform_calculate(
-        matchPct=create_match_pct(fields_conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(fields_conf, fields_to_selectors)
+        Similarity=create_match_pct(fields_conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(fields_conf, fields_to_selectors)
     ).encode(
-        color=alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1], bins=[0.1*n for n in range(0,11)])),
-        tooltip=["county:N", "state_id:N", "city_largest:N"] + [f"{f}:{conf.get(FIELD_TYPE)}" for f, conf in fields_conf.items()] + ["matchPct:Q"],
+        color=alt.Color("Similarity:Q", scale=alt.Scale(scheme="yellowgreenblue", domain=[0, 1], bins=[0.1*n for n in range(0,11)]),
+                        legend=alt.Legend(title='Similarity (Higher is more similar)')),
+        tooltip=["county:N", "state_id:N", "city_largest:N"] +
+                [alt.Tooltip(f"{f}:{conf.get(FIELD_TYPE)}", title=conf.get(ALIAS)) for f, conf in fields_conf.items()] +
+                [alt.Tooltip("Similarity:Q", format=",.2f")],
     ).properties(
         width=width,
         height=height
@@ -120,16 +123,17 @@ def country_base(data_url, vars_list=None, reference_county=None, reference_stat
         base = base.encode(
             color=alt.condition(f"datum.county == '{reference_county}' && datum.state_id == '{reference_state}'",
                                 alt.value("Grey"),
-                                alt.Color("matchPct:Q", scale=alt.Scale(domain=[0, 1], bins=[0.1*n for n in range(0,11)]))))
+                                alt.Color("Similarity:Q", scale=alt.Scale(scheme="yellowgreenblue", domain=[0, 1], bins=[0.1*n for n in range(0,11)]),
+                                          legend=alt.Legend(title='Similarity (Higher is more similar)'))))
         base = override_inits(base, county_value_overrides)
     return base
 
 def bars_base(data_url, fields_conf, state_selector=None):
     bars = alt.Chart(data_url).mark_bar(tooltip=True).encode(
-        y="county:N",
+        y=alt.Y("county:N"),
         color="county:N"
     ).transform_calculate(
-        matchPct=create_match_pct(fields_conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(fields_conf, fields_to_selectors)
+        Similarity=create_match_pct(fields_conf, fields_to_selectors) if DIST_METHOD == "binary" else create_similarity(fields_conf, fields_to_selectors)
     )
     if state_selector:
         bars = bars.add_selection(
@@ -138,9 +142,10 @@ def bars_base(data_url, fields_conf, state_selector=None):
             state_selector
         )
 
-    return bars.transform_window(
-        rank='rank(matchPct)',
-        sort=[alt.SortField("matchPct", order="descending"), alt.SortField('county', order='ascending')]
+    return bars.transform_calculate("County", "datum.county + ', ' + datum.state_id"
+    ).transform_window(
+        rank='rank(Similarity)',
+        sort=[alt.SortField("Similarity", order="descending"), alt.SortField('county', order='ascending')]
     ).transform_filter(
         alt.datum.rank <= 10
     ).properties(
@@ -150,10 +155,13 @@ def bars_base(data_url, fields_conf, state_selector=None):
 
 def country_view(data_url, vars_list=None, reference_county=None, reference_state=None):
     conf = get_conf(vars_list)
-    base = country_base(data_url, vars_list, reference_county, reference_state)
-    base &= bars_base(data_url, conf) \
-        .transform_calculate("County", "datum.county + ', ' + datum.state_id") \
-        .encode(x=alt.X("matchPct:Q", scale=alt.Scale(domain=[0, 1])), y=alt.Y("County:N", sort="-x"))
+    base = alt.layer(country_base(data_url, vars_list, reference_county, reference_state), outline)
+    bars = bars_base(data_url, conf) \
+        .encode(x=alt.X("Similarity:Q", scale=alt.Scale(domain=[0, 1]), axis=alt.Axis(title='Similarity (Higher is more similar)')),
+                y=alt.Y("County:N", sort="-x"),
+                tooltip=alt.Tooltip('Similarity:Q', format=",.2f")) \
+        .properties(title={"text": "Top 10 Most Similar Counties:", "subtitle": "based on above selected criteria"})
+    base &= (bars)
     return base.to_dict()
 
 def state_view(data_url, vars_list=None, reference_county=None, reference_state=None):
@@ -165,21 +173,23 @@ def state_view(data_url, vars_list=None, reference_county=None, reference_state=
 
     state_specific = alt.layer(
         base.add_selection(state_selector).transform_filter(state_selector),
-        outline.transform_filter(
-            state_selector
-        )
+        outline.transform_filter(state_selector)
     )
 
     bars_base_chart = bars_base(data_url, conf, state_selector)
 
     bars = [alt.vconcat(
-        bars_base_chart.encode(x=alt.X("matchPct:Q", scale=alt.Scale(domain=[0, 1])),
-                               y=alt.Y("county:N", sort=alt.SortField("matchPct", order="descending")))),
+        bars_base_chart.encode(
+            x=alt.X("Similarity:Q", scale=alt.Scale(domain=[0, 1]), axis=alt.Axis(title='Similarity (Higher is more similar)')),
+            y=alt.Y("county:N", sort=alt.SortField("Similarity", order="descending"))
+        ).properties(
+            title={"text": "Top 10 Most Similar Counties:", "subtitle": "based on above selected criteria"}
+        )),
         alt.vconcat()]
     for i, field in enumerate(conf.keys()):
         field_bars = bars_base_chart\
-            .encode(x=f"{field}:{conf.get(field).get(FIELD_TYPE)}",
-                    y=alt.Y("county:N", sort=alt.SortField("matchPct", order="descending")))
+            .encode(x=alt.X(f"{field}:{conf.get(field).get(FIELD_TYPE)}", axis=alt.Axis(title=conf.get(field).get(ALIAS))),
+                    y=alt.Y("county:N", sort=alt.SortField("Similarity", order="descending")))
         # selector = fields_to_selectors.get(field).get(SELECTOR)
         #
         # selector_line = alt.Chart()\
