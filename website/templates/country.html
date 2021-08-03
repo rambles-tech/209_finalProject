@@ -1,9 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
-	{% include "userSelection.html" %}
 	<h1>Explore New Regions of the US</h1>
+	<p id="explanatory">
+		<strong>LifeLocator</strong> uses the selected attributes that are most important to you to calculate Similarity*<br>
+		The provided reference county field is optional to find counties that are most similar to a county of interest <i>(e.g. the current county in which you live)</i>.<br>
+		Once desired configuration reached, click "Generate View"
+	</p><br>
+	{% include "userSelection.html" %}
 	<div class="row">
-		<h4>Reference Values initialized based on: <strong>{{ reference_for_title }}</strong><br>
+		<h4>Reference Values initialized based on: <strong>{{ reference_for_title }}</strong><br></h4>
 
 		<div class="col-lg">
 			<div id="slider">
@@ -22,7 +27,7 @@
 }).catch(console.error);;
 		</script>
 
-		<i><strong>Similarity</strong></i> calculated based on selected variables using the following formula:<br>
+		<h4>*<i><strong>Similarity</strong></i> calculated based on selected variables using the following formula:<br>
 		&emsp;&emsp;avg(min(1, abs(x<sub>i</sub> - y<sub>i</sub>) / sd<sub>i</sub>))<br>
 			&emsp;where x<sub>i</sub> is the county value and y<sub>i</sub> is the reference value for field i</h4>
 			
