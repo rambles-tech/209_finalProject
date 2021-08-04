@@ -26,7 +26,7 @@ def country_spec(vars_list):
   state = kwargs["reference_state"]
   vega_spec = alt_vis.country_view(data_url, var_names, **kwargs)
   return render_template('country.html', vega_spec=vega_spec, Kwargs=kwargs, vars_list=vars_list,
-                         reference_for_title = f"{county}, {state}" if county and state else "None")
+                         reference_for_title = f"{county}, {state}" if county and state else "None; no reference county selected, initilizing with default values")
 
 @app.route('/state/')
 def state():
@@ -41,7 +41,7 @@ def state_spec(vars_list):
   state = kwargs["reference_state"]
   vega_spec = alt_vis.state_view(data_url, var_names, **kwargs)
   return render_template('state.html', vega_spec=vega_spec,
-                         reference_for_title = f"{county}, {state}" if county and state else "None")
+                         reference_for_title = f"{county}, {state}" if county and state else "None; no reference county selected, initilizing with default values")
 
 @app.route('/compare/')
 def compare():

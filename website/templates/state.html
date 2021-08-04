@@ -1,8 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
-	{% include "userSelection.html" %}
 	<h1>Compare Details within Each State</h1>
-	<h4>Reference Values initialized based on: <strong>{{ reference_for_title }}</strong><br>
+	<p id="explanatory">
+		<strong>LifeLocator</strong> uses the selected attributes that are most important to you to calculate Similarity*<br>
+		The provided reference county field is optional to find counties that are most similar to a county of interest <i>(e.g. the current county in which you live)</i>.<br>
+		Once desired configuration reached, click "Generate View"
+	</p><br>
+	{% include "userSelection.html" %}
+	<h4>Reference Values initialized based on: <strong>{{ reference_for_title }}</strong><br></h4>
 
 	<div class="row">
 		<div class="col-lg">
