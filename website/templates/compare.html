@@ -1,9 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 	<h1>Directly Compare Counties Based on Criteria of Interest</h1>
-	<p></p>
+	<p id="explanatory">
+		The <strong>Compare</strong> page provides the ability to select multiple counties and directly compare them across the selected attributes.
+	</p><br>
     {% include "userSelection.html" %}
-	<div class="row">
+	<div class="altair">
 		<div class="col-lg">
 			<div id="slider">
 			  <div id="oldchildslider"></div>

@@ -27,24 +27,45 @@
 
 <hr width="90%">
 
-  <section>
+  <section id="overview">
 	<h2>Overview:</h2>
-  <p> Along the top of each page is a black bar with the navigation buttons that will bring you to the following pages:
-
+  <p> Along the top of each page is a navigation bar that will bring you to the following pages:
+	  <div class="row" id="countryView">
+	  	<div class="column">
 		<dl>
 		  <strong><dt>Country View</dt></strong>
 			  <dd>- View all of the United States</dd>
 				<dd>- Check the boxes for the variables that matter to you</dd>
 				<dd>- If desired, select a reference county from the drop down to compare against</dd>
-				<dd>- Then 'Generate View' to display a heatmap that shows matching counties</dd>
+				<dd>- Then 'Generate View' to display a heatmap of the calculated similarity</dd>
 				<dd>- Here you can adjust the sliders for each selected variable to suit your needs</dd>
-
-		  <strong><dt>State View</dt></strong>
-			  <dd>- Just like Country View except it focuses on a single state</dd>
-
-			<strong><dt>Compare</dt></strong>
-			  <dd>- On this page, you can select multiple counties to directly compare against</dd>
+	  			<dd>- Highlights top 10 highest matching counties based on calculated similarity</dd>
 		</dl>
+		</div>
+	  	<div class="column"><img src="{{ url_for('static', filename='images/countryview.png') }}" alt="CountryViewPreview"></div>
+      </div>
+
+	  <div class="row" id="stateView">
+	  	<div class="column">
+		<dl>
+		  <strong><dt>State View</dt></strong>
+			  <dd>- Similar to `Country View` with an additional `state_filter` dropdown that focuses in on counties within that particular state</dd>
+	  			<dd>- Adds detailed attribute values for the top 10 most similar counties in the state</dd>
+	  </dl>
+		</div>
+	  	<div class="column"><img src="{{ url_for('static', filename='images/stateview.png') }}" alt="StateViewPreview"></div>
+      </div>
+
+	  <div class="row" id="compareView">
+	  	<div class="column">
+		<dl>
+			<strong><dt>Compare</dt></strong>
+			  <dd>- Select multiple counties and directly compare selected attributes</dd>
+	  </dl>
+		</div>
+	  	<div class="column"><img src="{{ url_for('static', filename='images/compareview.png') }}" alt="CompareViewPreview"></div>
+      </div>
+
 </section>
 
 

@@ -57,6 +57,18 @@ header h1.logo:hover {
   margin: 0 auto;
 }
 
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 p {
     margin-left:1.3em;
     margin-bottom:0.1em;
