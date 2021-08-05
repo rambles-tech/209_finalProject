@@ -29,10 +29,10 @@
 
   <section id="overview">
 	<h2>Overview:</h2>
-  <p> Along the top of each page is a navigation bar that will bring you to the following pages:
+  <p> Along the top of each page is a navigation bar that will bring you to the following pages:<br><br>
 	  <div class="row" id="countryView">
-	  	<div class="column">
-		<dl>
+	  	<div class="lcolumn">
+		<dl class="overviewlist">
 		  <strong><dt>Country View</dt></strong>
 			  <dd>- View all of the United States</dd>
 				<dd>- Check the boxes for the variables that matter to you</dd>
@@ -42,34 +42,38 @@
 	  			<dd>- Highlights top 10 highest matching counties based on calculated similarity</dd>
 		</dl>
 		</div>
-	  	<div class="column"><img src="{{ url_for('static', filename='images/countryview.png') }}" alt="CountryViewPreview"></div>
+	  	<div class="rcolumn"><img class="previewimg" src="{{ url_for('static', filename='images/countryview.png') }}" alt="CountryViewPreview"></div>
       </div>
 
+	  <br><br><hr width="50%"><br><br>
+
 	  <div class="row" id="stateView">
-	  	<div class="column">
-		<dl>
+	  	<div class="lcolumn">
+		<dl class="overviewlist">
 		  <strong><dt>State View</dt></strong>
 			  <dd>- Similar to `Country View` with an additional `state_filter` dropdown that focuses in on counties within that particular state</dd>
 	  			<dd>- Adds detailed attribute values for the top 10 most similar counties in the state</dd>
 	  </dl>
 		</div>
-	  	<div class="column"><img src="{{ url_for('static', filename='images/stateview.png') }}" alt="StateViewPreview"></div>
+	  	<div class="rcolumn"><img class="previewimg" src="{{ url_for('static', filename='images/stateview.png') }}" alt="StateViewPreview"></div>
       </div>
 
+	  <br><br><hr width="50%"><br><br>
+
 	  <div class="row" id="compareView">
-	  	<div class="column">
-		<dl>
+	  	<div class="lcolumn">
+		<dl class="overviewlist">
 			<strong><dt>Compare</dt></strong>
 			  <dd>- Select multiple counties and directly compare selected attributes</dd>
 	  </dl>
 		</div>
-	  	<div class="column"><img src="{{ url_for('static', filename='images/compareview.png') }}" alt="CompareViewPreview"></div>
+	  	<div class="rcolumn"><img class="previewimg" src="{{ url_for('static', filename='images/compareview.png') }}" alt="CompareViewPreview"></div>
       </div>
 
 </section>
 
 
-	<form action="{{ url_for('country') }}">
+	<form action="{{ url_for('country') }}" align="center">
 		<input type="submit" value="Get Started" />
 	</form>
 {% endblock %}
