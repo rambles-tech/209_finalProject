@@ -17,12 +17,18 @@
 
       <br><br>
 
-      <b>But how do potential movers decide where to move?</b>
+      <i>But how do potential movers decide where to move?</i>
 
       <br><br>
-			<u>Enter The Life Locator</u><br>
-			Life Locator is designed to distill many streams of data and display it all in a user-friendly view enabling a user to find preference-matched counties and compare specific counties. </p>
+			Enter <strong>Life Locator</strong><br>
+			Life Locator is designed to distill many streams of data and display it all in a user-friendly view enabling a user to find preference-matched counties and compare specific counties.
+	  <br><br>
+		  <i>Who is this intended for?</i>
+	  Curious explorers and those expecting/planning for relocation.
+	  <br><br>
+	  </p>
   <br><br>
+
   </section>
 
 <hr width="90%">
@@ -71,78 +77,6 @@
       </div>
 
 </section>
-
-<hr width="90%">
-
-<section>
-  <h2>Dataset Description</h2>
-  <h3>US Counties Dataset</h3>
-  <p>A collection of data from simplemaps.com, sourced from the U.S. Bureau of Labor Statistics and the 2019 American Community Survey which is hosted by the United States Census Bureau.
-  </p>
-
-  <h3>Weather Dataset</h3>
-  <p>The weather dataset is queried and downloaded from Google BigQuery. These datasets are composed off the yearly aggregate metrics for each weather station in the Global Historical Climatology Network Daily table for 2020.
-    <br>
-    Once the yearly weather data is pulled for each of the weather stations, the latitude and longitude is used to query the FCC Block Api to get the county name, county FIPS, state, and state FIPS which is used to join to the US Counties dataset.
-    <br>
-    The weather stations are then aggregated at the county level, using median metrics to define a central value for the county.
-</p>
-
-<h3>Crime Rate</h3>
-  <p>The Crime Rate dataset was sourced from the United States crime rates by county Kaggle competition. It provides Crime Rate data from 2016.
-  </p>
-
-</section>
-
-<hr width="90%">
-
-<section>
-  <h2>FAQ</h2>
-
-  <h4>Q: How do I navigate the country view?
-  </h4>
-  <p>
-    First, select the data variables you would like to see reflected in the visualization. The more variables you select, the harder it may be to see variability from the different views you generate. Try selecting a few you are interested in, and add more variables from there. Next, select a reference county. This reference county serves as a baseline for the visualization to present to you counties that match the data variables in your reference county. This is useful if you live in X county and would like to know which counties are most similar to X county. The similarity factor is reflected by a similarity score that is a percentage between 0 and 100. Refer to the color-scale on the right of the visualization to see how a county fairs based on your interest. Low similarity scores range are reflected in light green/yellow and the highest similarity scores are reflected in dark blue. As you explore over the visualization, hovering over the map will present to you key data facts you selected to see and also the similarity score.
-    <br>
-   Be sure to navigate to the plots at the bottom of the visualization. These plots will show your top
-  Once this view is generated, you can change the toggle bars located above the visualization and explore counties that meet the criteria you define by moving the toggle bars.
-    <br>
-  Alternatively, you can explore the visualization without generating any view with a reference county and this will serve as a more exploratory tool versus explanatory tool.
-</p>
-
-  <h4>Q: How do I navigate the state view?
-  </h4>
-  <p>
-  The mechanics of the state view are similar to the country view but with a few different intentions in mind. See the FAQ question on how country and state views are different for more details.
-  To start, after navigating to the state view tab at the top, proceed by selecting the data variables you are interested in.
-  If you are not interested in a reference county (comparing one county’s data to the next, leave the reference county blank and continue onwards to the toggle bars). If you choose to input a reference a county, this will the county that will be used to compare against the state you select in the next step.
-  After generating your desired view (with or without a reference county), you can select the state you would like to see presented in the visualization by selecting a state form the state_filter drop down menu located at the top left of the visualization.
-  Now, after seeing your desired state, you can explore different similarity scores within a state by adjusting the toggle bars located at the top left of the visualization.
-  Again, be sure to navigate to the plots at the bottom of the visualization to see a concise recap of the data presented such as 10 most similar counties within the state.
-</p>
-
-  <h4>Q: How are country and state views different?
-  </h4>
-  <p>
-  The country views allow you to explore counties across the United States. But for those that know they want to move within a state, or are only focused on the data for one state, they can obtain a more focused and singular view of the state they desire versus a larger view of the country.
-</p>
-
-  <h4>Q: How do I navigate the compare view?
-  </h4>
-  <p>
-  After clicking the Compare tab at the top of the site, you will arrive at the functionality to compare multiple counties with each other. This serves the purpose of informing and serving those users that know which counties they are interested in across multiple states.
-  Start by selecting the data variables you are interested in and populate the state and county drop down menus under reference county. By default, only one state and county is offered. To add additional counties for your comparison, click the Add County button and proceed to select additional states and counties. Note that counties must be selected for each state. This tool is not a state comparison tool and therefore county selection is required to proceed.
-  Lastly, to proceed to the generate view tab to create the visualization. You will see a plot for each data variable you selected and counties color coded per the color key on the far right. Hover over the plots for more detailed data for each county.
-</p>
-
-  <h4>Q: How do I navigate this site?
-  </h4>
-  <p>
-  Select any of the tabs located at the far right top of the site. For detailed navigation guidance, see all FAQs.
-</p>
-</section
-
-
 	<form action="{{ url_for('country') }}" align="center">
 		<input type="submit" value="Get Started" />
 	</form>
