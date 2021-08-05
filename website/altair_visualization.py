@@ -214,22 +214,25 @@ def comp_view(data_url, counties_list, vars_list=None):
     #     outline
     # )
     condition = [f"((datum.county == '{c[0]}') & (datum.state_id == '{c[1]}'))" for c in counties_list]
-    bars_base_chart = alt.Chart(data_url).mark_bar(tooltip=True).encode(
-        y="county:N",
-        color="county:N"
-    ).transform_filter(
-        " | ".join(condition)
-    ).properties(
-        width=WIDTH / 2,
-        height=HEIGHT / 3
-    )
+    bars_base_chart = alt.Chart(data_url
+        ).mark_bar(tooltip=True
+        ).transform_calculate("County", "datum.county + ', ' + datum.state_id"
+        ).encode(
+            y="County:N",
+            color="County:N"
+        ).transform_filter(
+            " | ".join(condition)
+        ).properties(
+            width=WIDTH / 2,
+            height=HEIGHT / 3
+        )
 
     bars = [alt.vconcat(), alt.vconcat()]
 
     for i, field in enumerate(conf.keys()):
         field_bars = bars_base_chart\
             .encode(x=f"{field}:{conf.get(field).get(FIELD_TYPE)}",
-                    y=alt.Y("county:N", sort=alt.SortField("county", order="ascending")))
+                    y=alt.Y("County:N", sort=alt.SortField("County", order="ascending")))
         # selector = fields_to_selectors.get(field).get(SELECTOR)
         #
         # selector_line = alt.Chart()\
