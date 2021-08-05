@@ -106,9 +106,8 @@ function createStateDropdown(data_loc) {
         opt.innerHTML = s;
         newSelectState.appendChild(opt);
     }
-    if (numSelectors === 0) {
-        persistReferenceCounty(newSelectState, newSelectCounty, numSelectors, json);
-    }
+
+    persistReferenceCounty(newSelectState, newSelectCounty, numSelectors, json);
     });
 }
 

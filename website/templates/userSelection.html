@@ -40,6 +40,16 @@
   if (paramArr !== null) { checks.forEach(check => check.checked=(paramArr.includes(check.id))) };
 
   $(function() {
-    createStateDropdown("{{ url_for('static', filename='data_sources/county_by_state_list.json') }}")
+    var n = 1
+    var cList = []
+    if (window.location.search) {
+        var search = window.location.search.substring(1);
+        var queryParams = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
+        var cList = queryParams["counties_list"].split("|");
+    }
+    n = Math.max(n, cList.length)
+    for (var i = 0; i < n; i++) {
+        createStateDropdown("{{ url_for('static', filename='data_sources/county_by_state_list.json') }}")
+    }
 });
   </script>
