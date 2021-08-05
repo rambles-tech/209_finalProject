@@ -57,6 +57,33 @@ header h1.logo:hover {
   margin: 0 auto;
 }
 
+.overviewlist {
+  vertical-align: middle;
+}
+
+.previewimg {
+  width: 100%;
+  height: auto;
+  padding:10px;
+}
+
+.lcolumn {
+  float: left;
+  width: 60%;
+}
+
+.rcolumn {
+  float: left;
+  width: 40%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 p {
     margin-left:1.3em;
     margin-bottom:0.1em;

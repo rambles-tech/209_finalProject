@@ -139,7 +139,7 @@ def bars_base(data_url, fields_conf, state_selector=None):
         bars = bars.add_selection(
             state_selector
         ).transform_filter(
-            state_selector
+            "state.filter == datum.state_id"
         )
 
     return bars.transform_calculate("County", "datum.county + ', ' + datum.state_id"
@@ -166,13 +166,13 @@ def country_view(data_url, vars_list=None, reference_county=None, reference_stat
 
 def state_view(data_url, vars_list=None, reference_county=None, reference_state=None):
     state_dropdown = alt.binding_select(options=sorted(county.state_id.dropna().unique().tolist()))
-    state_selector = alt.selection_single(name="state", fields=['state_id'], bind=state_dropdown, init={"state_id": reference_state if reference_state else "CA"})
+    state_selector = alt.selection_single(name="state", fields=['filter'], bind=state_dropdown, init={"filter": reference_state if reference_state else "CA"})
 
     conf = get_conf(vars_list)
     base = country_base(data_url, conf, reference_county, reference_state)
 
     state_specific = alt.layer(
-        base.add_selection(state_selector).transform_filter(state_selector),
+        base.add_selection(state_selector).transform_filter("state.filter == datum.state_id"),
         outline.transform_filter(state_selector)
     )
 
